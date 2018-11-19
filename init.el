@@ -1,5 +1,12 @@
 ;; -*- coding: utf-8; lexical-binding: t; -*-
 
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (let* ((minver "24.4"))
   (when (version< emacs-version minver)
     (error "Emacs v%s or higher is required." minver)))
@@ -23,12 +30,13 @@
 ;; Which functionality to enable (use t or nil for true and false)
 ;;----------------------------------------------------------------------------
 (setq *is-a-mac* (eq system-type 'darwin))
-(setq *win64* (eq system-type 'windows-nt) )
+(setq *win64* (eq system-type 'windows-nt))
 (setq *cygwin* (eq system-type 'cygwin) )
 (setq *linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)) )
 (setq *unix* (or *linux* (eq system-type 'usg-unix-v) (eq system-type 'berkeley-unix)) )
-(setq *emacs24* (and (not (featurep 'xemacs)) (or (>= emacs-major-version 24))) )
-(setq *emacs25* (and (not (featurep 'xemacs)) (or (>= emacs-major-version 25))) )
+(setq *emacs24* (>= emacs-major-version 24))
+(setq *emacs25* (>= emacs-major-version 25))
+(setq *emacs26* (>= emacs-major-version 26))
 (setq *no-memory* (cond
                    (*is-a-mac*
                     (< (string-to-number (nth 1 (split-string (shell-command-to-string "sysctl hw.physmem")))) 4000000000))
