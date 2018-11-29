@@ -87,7 +87,8 @@
     workgroups2
     zoutline
     company-c-headers
-    company-statistics)
+    company-statistics
+	flymd)
   "Packages to install from melpa-unstable.")
 
 (defvar melpa-stable-banned-packages nil
