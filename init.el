@@ -139,7 +139,7 @@
   (require 'init-hydra)
   (require 'init-shackle)
   (require 'init-dired)
-  (require 'init-artbollocks-mode)
+;;  (require 'init-artbollocks-mode)
   (require 'init-writting)
 
   (require 'init-org-download)
