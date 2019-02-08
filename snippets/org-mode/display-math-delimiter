@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: display-math-delimiter
+# key: di
+# --
+\\[
+$0
+\\]
