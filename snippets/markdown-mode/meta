@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: post-head
+# key: <me
+# --
+---
+layout:     post
+title:      $1
+subtitle:   $2
+date:       `(format-time-string "%F %R")`
+author:     在到处之间找我
+header-img: $3
+catalog: true
+tags:
+    - $4
+---
