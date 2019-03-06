@@ -141,13 +141,8 @@
   (require 'init-dired)
 ;;  (require 'init-artbollocks-mode)
   (require 'init-writting)
-
-  (require 'init-org-download)
-  (require 'init-font-settings)
-  (require 'init-flymd)
-  (require 'init-auctex)
-  (require 'init-ox-gfm)
-  (require 'init-ghc)
+  
+  (require 'my-init)
   
   ;; @see https://github.com/hlissner/doom-emacs/wiki/FAQ
   ;; Adding directories under "site-lisp/" to `load-path' slows
