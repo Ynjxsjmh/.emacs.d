@@ -28,19 +28,29 @@
 (setq default-buffer-file-coding-system 'utf-8)
 
 ;; init org-babel
+;; Copy and edit from https://github.com/purcell/emacs.d/blob/master/lisp/init-org.el#L385
 (org-babel-do-load-languages
-      'org-babel-load-languages
-      '((emacs-lisp . t)
-        (C . t)
-        (java . t)
-        (js . t)
-        (ruby . t)
-        (ditaa . t)
-        (python . t)
-        (shell . t)
-        (latex . t)
-        (plantuml . t)
-        (R . t)))
+	'org-babel-load-languages
+		`((R . t)
+		 (C . t)
+		 (ditaa . t)
+		 (dot . t)
+		 (emacs-lisp . t)
+		 (gnuplot . t)
+		 (haskell . nil)
+		 (java . t)
+         (js . t)
+		 (latex . t)
+		 (ledger . t)
+		 (ocaml . nil)
+		 (octave . t)
+		 (plantuml . t)
+		 (python . t)
+		 (ruby . t)
+		 (screen . nil)
+		 (shell . t)
+		 (sql . t)
+		 (sqlite . t))))
 
 ;;------------------------------------------------------------------------------
 ;; my function
