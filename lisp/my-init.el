@@ -3,6 +3,7 @@
 (require-package 'auctex)
 (require-package 'ox-gfm)
 (require-package 'ghc)
+(require-package 'graphviz-dot-mode)
 		
 (push (expand-file-name "~/.emacs.d/lisp") load-path)
 (require 'init-org-download)
@@ -11,6 +12,9 @@
 (require 'init-auctex)
 (require 'init-ox-gfm)
 (require 'init-ghc)
+;; (void-variable default-tab-width) problem, check https://github.com/ppareit/graphviz-dot-mode/pull/24
+;; Meanwhile delete graphviz-dot-mode.elc
+(require 'init-graphviz-dot-mode)
 
 ;;------------------------------------------------------------------------------
 ;; minor changes
@@ -50,7 +54,7 @@
 		 (screen . nil)
 		 (shell . t)
 		 (sql . t)
-		 (sqlite . t))))
+		 (sqlite . t)))
 
 ;;------------------------------------------------------------------------------
 ;; my function
@@ -64,7 +68,7 @@
 
 ;;------------------------------------------------------------------------------
 
-; https://wikemacs.org/wiki/Emacs_Lisp_Cookbook
+;; https://wikemacs.org/wiki/Emacs_Lisp_Cookbook
 (defun bracket-to-dollar (start end)
 	(interactive "r")
 	(narrow-to-region start end)
