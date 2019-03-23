@@ -2,3 +2,32 @@
 This an =.emacs.d= cloned from [[https://github.com/redguardtoo/emacs.d][redguardtoo/emacs.d]].
 
 I add some extra packages to satisfy my need.
+
+* Modification
+You can find my modification in =.emacs.d/lisp/my-init.el=
+** graphviz-dot-mode
+=graphviz-dot-mode= is a package to work with Graphviz DOT-format files in emacs. 
+
+You may run into a problem =(void-variable default-tab-width)= if you use ELPA downloading it. It seems that the author doesn't update his package in MELPA, you can get more infomation on [[https://github.com/ppareit/graphviz-dot-mode/pull/24][pull 24]] 
+
+To solve that problem, you need to access it's [[https://github.com/ppareit/graphviz-dot-mode][official github]] and download the newest =graphviz-dot-mode.el= to replace what you download from MELPA by ELPA. Moreover, you need to delete the =elc= file.
+
+** font settings
+I use the font settings shared by chriszheng in his aticle [[https://chriszheng.science/2015/04/26/Emacs-font-settings/][Emacs的字体设置]], which takes better care of my poor eyes.
+
+** flymd
+=flymd= is a package that helps you preview markdown in your browser.
+
+I rarely use it now because I find the auto-wrap function with markdown works bad in emacs.
+
+** org-download
+=org-download= is a package that helps you insert image into org file.
+
+** ox-gfm
+=ox-gfm= can export org file to Github Flavored Markdown. I use it after finishing my article.
+
+** auctex
+=auctex= is a comprehensive customizable integrated environment for writing input files for TeX/LaTeX/ConTeXt/Texinfo using Emacs or XEmacs.
+
+** ghc
+=ghc-mod= is for Haskell, but I don't know how to use it now.
