@@ -31,3 +31,12 @@ I rarely use it now because I find the auto-wrap function with markdown works ba
 
 ** ghc
 =ghc-mod= is for Haskell, but I don't know how to use it now.
+* Error
+Here lists some error I met with.
+
+** clang
+#+BEGIN_SRC abc
+Company backend ’company-clang’ could not be initialized: Company found no clang executable
+#+END_SRC
+
+This means you don't have clang executable in your PATH or you haven't download it at all. For Windows user, you can download it using Cygwin. Besides this, you need to add the Cygwin =bin= folder to your PATH.
