@@ -10,6 +10,6 @@ date:       `(format-time-string "%F %R")`
 author:     在到处之间找我
 header-img: $3
 catalog: true
-tags:
-    - $4
+category: $4
+tags: [$5,]
 ---
