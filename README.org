@@ -31,6 +31,11 @@ I rarely use it now because I find the auto-wrap function with markdown works ba
 
 ** ghc
 =ghc-mod= is for Haskell, but I don't know how to use it now.
+** py-autopep8
+[[https://github.com/paetzke/py-autopep8.el][py-autopep8]] integrates autopep8 into Emacs.
+
+It uses the external =autopep8= Python tool to tidy up the current buffer according to Python’s PEP8.
+
 * Error
 Here lists some error I met with.
 
