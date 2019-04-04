@@ -5,7 +5,7 @@
 (require-package 'ghc)
 (require-package 'graphviz-dot-mode)
 (require-package 'py-autopep8)
-		
+
 (push (expand-file-name "~/.emacs.d/lisp") load-path)
 (require 'init-org-download)
 (require 'init-font-settings)
@@ -13,7 +13,8 @@
 (require 'init-auctex)
 (require 'init-ox-gfm)
 (require 'init-ghc)
-(require 'init-py-autopep8)
+;; py-autopep8 is horrible with auto save
+;; (require 'init-py-autopep8)
 ;; (void-variable default-tab-width) problem, check https://github.com/ppareit/graphviz-dot-mode/pull/24
 ;; Meanwhile delete graphviz-dot-mode.elc
 (require 'init-graphviz-dot-mode)
