@@ -93,4 +93,18 @@
         (replace-match "$"))
 )
 
+;;------------------------------------------------------------------------------
+(setq company-clang-arguments
+      (mapcar (lambda (item)(concat "-I" item))
+              (split-string
+               "
+ C:\\CodeBlocksMinGW\\lib\\gcc\\mingw32\\5.1.0\\include\\c++
+ C:\\CodeBlocksMinGW\\lib\\gcc\\mingw32\\5.1.0\\include\\c++\\mingw32
+ C:\\CodeBlocksMinGW\\lib\\gcc\\mingw32\\5.1.0\\include\\c++\\backward
+ C:\\CodeBlocksMinGW\\lib\\gcc\\mingw32\\5.1.0\\include
+ C:\\CodeBlocksMinGW\\include
+ C:\\CodeBlocksMinGW\\lib\\gcc\\mingw32\\5.1.0\\include-fixed
+"
+               )))
+
 (provide 'my-init)
