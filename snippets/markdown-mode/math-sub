@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: math-sub
+# key: _
+# --
+
+<sub>$1</sub>$2
