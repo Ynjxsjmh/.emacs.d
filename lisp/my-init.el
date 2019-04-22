@@ -41,7 +41,8 @@
 
 ;; 设置展开 yasnippet 的时候不需要空格
 ;; see https://github.com/joaotavora/yasnippet/issues/612
-(add-to-list 'yas-key-syntaxes 'yas-longest-key-from-whitespace)
+(eval-after-load 'yasnippet
+  '(add-to-list 'yas-key-syntaxes 'yas-longest-key-from-whitespace))
 
 ;; init org-babel
 ;; Copy and edit from https://github.com/purcell/emacs.d/blob/master/lisp/init-org.el#L385
