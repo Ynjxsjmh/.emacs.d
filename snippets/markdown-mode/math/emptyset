@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: emptyset
+# key: <e
+# --
+
+&empty;
