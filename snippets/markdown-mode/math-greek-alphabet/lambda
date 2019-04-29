@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: math-lambda
+# key: l
+# --
+
+\lambda

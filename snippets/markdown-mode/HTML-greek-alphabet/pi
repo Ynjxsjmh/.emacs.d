@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: html-pi
+# key: p
+# --
+
+&pi;

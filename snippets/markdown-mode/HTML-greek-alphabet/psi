@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: html-psi
+# key: p
+# --
+
+&psi;
