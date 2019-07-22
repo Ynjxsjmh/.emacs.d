@@ -7,6 +7,7 @@
 (require-package 'py-autopep8)
 (require-package 'lsp-mode)
 (require-package 'pangu-spacing)
+(require-package 'markdown-toc)
 
 (push (expand-file-name "~/.emacs.d/lisp") load-path)
 (require 'init-org-download)
@@ -19,6 +20,7 @@
 ;; (require 'init-py-autopep8)
 (require 'init-lsp-mode)
 (require 'init-pangu-spacing)
+(require 'init-markdown-toc)
 
 ;; (void-variable default-tab-width) problem, check https://github.com/ppareit/graphviz-dot-mode/pull/24
 ;; Meanwhile delete graphviz-dot-mode.elc
