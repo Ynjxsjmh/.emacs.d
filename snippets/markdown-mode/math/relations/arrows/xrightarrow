@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: math-xrightarrow-with-text
+# key: -
+# --
+
+\xrightarrow[${1:under}]{${2:over}}$3

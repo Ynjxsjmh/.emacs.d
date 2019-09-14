@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: sup
-# key: ^
-# --
-
-<sup>$1</sup>$2

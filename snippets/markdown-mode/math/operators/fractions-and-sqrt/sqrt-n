@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: math-sqrt-n
+# key: s
+# --
+
+\sqrt[${1:n}]{${2:x}}$3

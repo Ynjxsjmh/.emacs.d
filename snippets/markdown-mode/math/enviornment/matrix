@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: math-matrix
+# key: [
+# --
+
+\begin{matrix}
+   a & b \\\\
+   c & d
+\end{matrix}

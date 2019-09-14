@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: eqref
-# key: ref
-# --
-
- $\eqref{eq:$1}$ $2
