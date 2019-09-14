@@ -21,6 +21,10 @@
 (require 'init-lsp-mode)
 (require 'init-pangu-spacing)
 (require 'init-markdown-toc)
+(require 'init-gtd)
+(require 'init-adoc-mode)
+(require 'init-beancount)
+(require 'init-quickrun)
 
 ;; (void-variable default-tab-width) problem, check https://github.com/ppareit/graphviz-dot-mode/pull/24
 ;; Meanwhile delete graphviz-dot-mode.elc
