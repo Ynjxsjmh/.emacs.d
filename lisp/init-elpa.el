@@ -89,7 +89,9 @@
     company-c-headers
     company-statistics
 	flymd
-    lsp-haskell)
+    lsp-haskell
+    outline-magic
+    quickrun)
   "Packages to install from melpa-unstable.")
 
 (defvar melpa-stable-banned-packages nil
