@@ -41,6 +41,14 @@
 ;;设置写入文件编码
 (setq default-buffer-file-coding-system 'utf-8)
 
+;; 文件名使用GBK编码
+;; (setq file-name-coding-system 'utf-8)
+
+(set-default 'process-coding-system-alist
+      '(("[pP][lL][iI][nN][kK]" gbk-dos . gbk-dos)
+	("[cC][mM][dD][pP][rR][oO][xX][yY]" gbk-dos . gbk-dos)
+	("[gG][sS]" gbk-dos . gbk-dos)))
+
 ;; 设置展开 yasnippet 的时候不需要空格
 ;; see https://github.com/joaotavora/yasnippet/issues/612
 (eval-after-load 'yasnippet
