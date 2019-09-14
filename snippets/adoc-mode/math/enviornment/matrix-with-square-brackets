@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: math-matrix-with-square-brackets
+# key: [
+# --
+
+\begin{bmatrix}
+   a & b \\\\
+   c & d
+\end{bmatrix}

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: ⩽(math-less-and-equal)
+# key: <
+# --
+
+\leqslant

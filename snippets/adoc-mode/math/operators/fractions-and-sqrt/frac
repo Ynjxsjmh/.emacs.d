@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: math-frac
+# key: f
+# --
+
+\frac{${1:分子}}{${2:分母}}$3

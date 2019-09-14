@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: MathJax-color
+# key: c
+# --
+
+\color{${1:red}}{$2}

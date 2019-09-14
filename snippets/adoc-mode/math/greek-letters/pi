@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: π(math-pi)
+# key: p
+# --
+
+\pi
