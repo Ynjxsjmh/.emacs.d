@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: ∯(math-closed-surface-integral)
+# key: i
+# --
+
+\oiint

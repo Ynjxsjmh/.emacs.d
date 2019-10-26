@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: ∮(math-contour-integral)
+# key: i
+# --
+
+\oint

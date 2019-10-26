@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: math-cases
-# key: [
-# --
-
-\begin{cases}
-   a &\text{if } b \\\\
-   c &\text{if } d
-\end{cases}

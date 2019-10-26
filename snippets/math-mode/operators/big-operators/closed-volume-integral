@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: ∰(math-closed-volume-integral)
+# key: i
+# --
+
+\oiiint

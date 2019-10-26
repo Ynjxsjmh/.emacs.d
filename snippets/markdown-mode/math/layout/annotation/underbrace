@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: math-brace-under-formula
-# key: {
-# --
-
-\underbrace{$1}_{\text{${2:note}}}$3

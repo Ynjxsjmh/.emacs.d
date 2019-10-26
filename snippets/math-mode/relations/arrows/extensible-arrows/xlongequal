@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: math-xlongequal-with-text
+# key: =
+# --
+
+\xlongequal[${1:under}]{${2:over}}$3

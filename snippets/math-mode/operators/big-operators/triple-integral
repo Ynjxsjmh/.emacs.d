@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: ∭(math-triple-integral)
+# key: i
+# --
+
+\iiint

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: ∣∣(math-lvert-rvert)
+# key: |
+# --
+
+\lvert $0 \rvert
