@@ -15,9 +15,16 @@
 
 ;; fold and unfold sections of text function
 ;; https://emacs.stackexchange.com/questions/361/how-can-i-hide-display-latex-section-just-like-org-mode-does-with-headlines
-(eval-after-load 'outline
-  '(progn
-    (require 'outline-magic)
-    (define-key outline-minor-mode-map (kbd "<tab>") 'outline-cycle)))
+
+;; http://wikemacs.org/wiki/Outline
+(add-hook 'outline-minor-mode-hook
+          (lambda ()
+            (require 'outline-magic)
+            (define-key outline-minor-mode-map  (kbd "<tab>") 'outline-cycle)))
+
+(add-hook 'adoc-mode-hook
+          (lambda ()
+            (outline-minor-mode)
+))
 
 (provide 'init-adoc-mode)
