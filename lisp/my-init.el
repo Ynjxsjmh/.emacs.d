@@ -25,6 +25,7 @@
 (require 'init-adoc-mode)
 (require 'init-beancount)
 (require 'init-quickrun)
+(require 'init-aweshell)
 
 ;; (void-variable default-tab-width) problem, check https://github.com/ppareit/graphviz-dot-mode/pull/24
 ;; Meanwhile delete graphviz-dot-mode.elc
