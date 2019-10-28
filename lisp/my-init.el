@@ -49,10 +49,15 @@
 ;; 文件名使用GBK编码
 ;; (setq file-name-coding-system 'utf-8)
 
-(set-default 'process-coding-system-alist
-      '(("[pP][lL][iI][nN][kK]" gbk-dos . gbk-dos)
-	("[cC][mM][dD][pP][rR][oO][xX][yY]" gbk-dos . gbk-dos)
-	("[gG][sS]" gbk-dos . gbk-dos)))
+;; https://chriszheng.science/2015/09/24/Prefer-UTF-8-in-MS-Windows/
+;; https://emacs-china.org/t/topic/3894/23?u=zhixing
+(when (eq system-type 'windows-nt)
+  (set-default 'process-coding-system-alist
+			   '(("[pP][lL][iI][nN][kK]" gbk-dos . gbk-dos)
+				 ("[cC][mM][dD][pP][rR][oO][xX][yY]" gbk-dos . gbk-dos)
+				 ("[rR][gG]" utf-8-dos . gbk-dos)
+				 ("[gG][iI][tT]" utf-8-dos . gbk-dos)
+				 ))
 
 ;; 设置展开 yasnippet 的时候不需要空格
 ;; see https://github.com/joaotavora/yasnippet/issues/612
