@@ -57,7 +57,7 @@
 				 ("[cC][mM][dD][pP][rR][oO][xX][yY]" gbk-dos . gbk-dos)
 				 ("[rR][gG]" utf-8-dos . gbk-dos)
 				 ("[gG][iI][tT]" utf-8-dos . gbk-dos)
-				 ))
+				 )))
 
 ;; 设置展开 yasnippet 的时候不需要空格
 ;; see https://github.com/joaotavora/yasnippet/issues/612
