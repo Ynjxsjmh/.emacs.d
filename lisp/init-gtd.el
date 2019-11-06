@@ -79,5 +79,7 @@
          "* %(org-contacts-template-name)\n  :PROPERTIES:\n  :EMAIL: %(org-contacts-template-email)\n  :END:")
         ))
 
+;; Config archive target
+(setq org-archive-location "%s_archive::date-tree")
 
 (provide 'init-gtd)
