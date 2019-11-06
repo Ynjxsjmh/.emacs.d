@@ -10,26 +10,40 @@
 (require-package 'markdown-toc)
 
 (push (expand-file-name "~/.emacs.d/lisp") load-path)
+
+;; -----------------------------------------------------------------------------
+;; 包可以在 MELPA 或 ELPA 上找到的
+
 (require 'init-org-download)
-(require 'init-font-settings)
 (require 'init-flymd)
 (require 'init-auctex)
 (require 'init-ox-gfm)
 (require 'init-ghc)
+;; (void-variable default-tab-width) problem, check https://github.com/ppareit/graphviz-dot-mode/pull/24
+;; Meanwhile delete graphviz-dot-mode.elc
+(require 'init-graphviz-dot-mode)
 ;; py-autopep8 is horrible with auto save
 ;; (require 'init-py-autopep8)
 (require 'init-lsp-mode)
 (require 'init-pangu-spacing)
 (require 'init-markdown-toc)
-(require 'init-gtd)
-(require 'init-adoc-mode)
-(require 'init-beancount)
 (require 'init-quickrun)
-(require 'init-aweshell)
+(require 'init-adoc-mode)
 
-;; (void-variable default-tab-width) problem, check https://github.com/ppareit/graphviz-dot-mode/pull/24
-;; Meanwhile delete graphviz-dot-mode.elc
-(require 'init-graphviz-dot-mode)
+;; -----------------------------------------------------------------------------
+;; 别人写的，但包不可以在 MELPA 或 ELPA 上找到的
+
+(require 'init-aweshell)
+(require 'init-beancount)
+
+;; -----------------------------------------------------------------------------
+;; 自己写的
+
+(require 'init-gtd)
+(require 'init-font-settings)
+(require 'init-org-babel)
+(require 'init-encoding)
+
 
 ;;------------------------------------------------------------------------------
 ;; minor changes
@@ -41,53 +55,10 @@
 ;; maximize the window
 (setq initial-frame-alist (quote ((fullscreen . maximized))))
 
-;;设置默认读入文件编码
-(prefer-coding-system 'utf-8)
-;;设置写入文件编码
-(setq default-buffer-file-coding-system 'utf-8)
-
-;; 文件名使用GBK编码
-;; (setq file-name-coding-system 'utf-8)
-
-;; https://chriszheng.science/2015/09/24/Prefer-UTF-8-in-MS-Windows/
-;; https://emacs-china.org/t/topic/3894/23?u=zhixing
-(when (eq system-type 'windows-nt)
-  (set-default 'process-coding-system-alist
-			   '(("[pP][lL][iI][nN][kK]" gbk-dos . gbk-dos)
-				 ("[cC][mM][dD][pP][rR][oO][xX][yY]" gbk-dos . gbk-dos)
-				 ("[rR][gG]" utf-8-dos . gbk-dos)
-				 ("[gG][iI][tT]" utf-8-dos . gbk-dos)
-				 )))
-
 ;; 设置展开 yasnippet 的时候不需要空格
 ;; see https://github.com/joaotavora/yasnippet/issues/612
 (eval-after-load 'yasnippet
   '(add-to-list 'yas-key-syntaxes 'yas-longest-key-from-whitespace))
-
-;; init org-babel
-;; Copy and edit from https://github.com/purcell/emacs.d/blob/master/lisp/init-org.el#L385
-(org-babel-do-load-languages
-	'org-babel-load-languages
-		`((R . t)
-		 (C . t)
-		 (ditaa . t)
-		 (dot . t)
-		 (emacs-lisp . t)
-		 (gnuplot . t)
-		 (haskell . nil)
-		 (java . t)
-         (js . t)
-		 (latex . t)
-		 (ledger . t)
-		 (ocaml . nil)
-		 (octave . t)
-		 (plantuml . t)
-		 (python . t)
-		 (ruby . t)
-		 (screen . nil)
-		 (shell . t)
-		 (sql . t)
-		 (sqlite . t)))
 
 ;;------------------------------------------------------------------------------
 ;; my function
