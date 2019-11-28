@@ -121,5 +121,9 @@
 
 ;;------------------------------------------------------------------------------
 
+(defun convert-asciidoc-to-html ()
+  (interactive)
+  (shell-command (format "asciidoctor \"%s\"" buffer-file-name)))
+
 
 (provide 'my-init)
