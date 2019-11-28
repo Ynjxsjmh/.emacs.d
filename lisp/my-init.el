@@ -10,6 +10,11 @@
 (require-package 'markdown-toc)
 
 (push (expand-file-name "~/.emacs.d/lisp") load-path)
+(push (expand-file-name "~/.emacs.d/lisp/personal") load-path)
+(push (expand-file-name "~/.emacs.d/lisp/personal/private") load-path)
+
+(let ((default-directory "~/.emacs.d/individual/"))
+  (normal-top-level-add-subdirs-to-load-path))
 
 ;; -----------------------------------------------------------------------------
 ;; 包可以在 MELPA 或 ELPA 上找到的
@@ -68,6 +73,8 @@
 (define-key evil-insert-state-map (kbd "C-p") 'previous-line)
 (define-key evil-insert-state-map (kbd "C-n") 'next-line)
 
+(setq org-latex-toc-command "\\tableofcontents \\clearpage")
+
 ;;------------------------------------------------------------------------------
 ;; my function
 ;;------------------------------------------------------------------------------
@@ -113,10 +120,6 @@
                )))
 
 ;;------------------------------------------------------------------------------
-
-(defun convert-asciidoc-to-html ()
-  (interactive)
-  (shell-command (concat "asciidoctor " buffer-file-name)))
 
 
 (provide 'my-init)
