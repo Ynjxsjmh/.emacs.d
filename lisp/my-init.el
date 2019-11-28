@@ -60,6 +60,14 @@
 (eval-after-load 'yasnippet
   '(add-to-list 'yas-key-syntaxes 'yas-longest-key-from-whitespace))
 
+;; 不用 eval 在evil-commands.el提供的 (evil-paste-last-insertion)
+;; (global-set-key (kbd "C-a") 'move-beginning-of-line)
+;; (evil-define-key 'nil 'global-map (kbd "C-a") 'move-beginning-of-line)
+(define-key evil-insert-state-map (kbd "C-a") 'move-beginning-of-line)
+(define-key evil-normal-state-map (kbd "C-e") 'move-end-of-line)
+(define-key evil-insert-state-map (kbd "C-p") 'previous-line)
+(define-key evil-insert-state-map (kbd "C-n") 'next-line)
+
 ;;------------------------------------------------------------------------------
 ;; my function
 ;;------------------------------------------------------------------------------
