@@ -39,7 +39,7 @@
   "
 _h_ Export to HTML
 "
-  ("h" convert-asciidoc-to-html)
+  ("h" convert-asciidoc-to-html nil :exit t)
   ("q" nil "quit"))
 (define-key adoc-mode-map (kbd "C-c C-e") 'hydra-adoc/body)
 
