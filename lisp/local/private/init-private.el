@@ -6,5 +6,6 @@
 (require 'init-encoding)
 (require 'init-latex)
 (require 'init-html-converter)
+(require 'init-org-protocol)
 
 (provide 'init-private)
