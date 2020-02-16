@@ -3,8 +3,11 @@ This an =.emacs.d= cloned from [[https://github.com/redguardtoo/emacs.d][redguar
 
 I add some extra packages to satisfy my need.
 
+1. =individual= folder stores some package couldn't be found on ELPA/MELPA
+2. =personal= foler stores some
+
 * Modification
-You can find my modification in =.emacs.d/lisp/my-init.el=
+You can find my modification in =.emacs.d/lisp/init-local.el=
 ** graphviz-dot-mode
 =graphviz-dot-mode= is a package to work with Graphviz DOT-format files in emacs. 
 

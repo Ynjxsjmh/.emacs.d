@@ -18,4 +18,5 @@
 (require 'init-personal)
 (require 'init-individual)
 
-(provide 'my-init)
+(provide 'init-local)
+;;; init-local.el ends here
