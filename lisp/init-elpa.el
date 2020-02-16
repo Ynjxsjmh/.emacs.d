@@ -111,7 +111,8 @@
 	flymd
     lsp-haskell
     outline-magic
-    quickrun)
+    quickrun
+    org-noter)
   "Packages to install from melpa-unstable.")
 
 (defvar melpa-stable-banned-packages nil
