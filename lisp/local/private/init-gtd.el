@@ -35,6 +35,20 @@
                              "e:/sourcecode/Cognition/GTD/regular.org"
                              "e:/sourcecode/Cognition/GTD/journal.org"))
 
+;; https://lists.gnu.org/archive/html/emacs-orgmode/2010-08/msg01282.html
+;; We always used the "w" template as the default for `org-remember' and
+;; also used it for `org-capture' for historical reasons.
+;;
+;; Unfortunately, this breaks, if the user has no "w" template defined.
+;;
+;; The patch below simply set's the custom variable
+;; `org-protocol-default-template-key' to nil, so the interactive template
+;; selection is used by default.  This works for both, remember an capture.
+(defcustom org-protocol-default-template-key nil
+   "The default org-remember-templates key to use."
+   :group 'org-protocol
+   :type 'string)
+
 
 ;; Config org-capture
 (setq org-default-notes-file (concat org-directory "/notes.org"))
@@ -74,7 +88,7 @@
          "* %(org-mac-chrome-get-frontmost-url)"
          :clock-in t
          :clock-resume t)
-        ("p" "People (Contacts)" entry
+        ("P" "People (Contacts)" entry
          (file "E:/sourcecode/note/contacts.org")
          "* %(org-contacts-template-name)\n  :PROPERTIES:\n  :EMAIL: %(org-contacts-template-email)\n  :END:")
         ))
