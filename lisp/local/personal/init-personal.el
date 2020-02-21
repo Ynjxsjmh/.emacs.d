@@ -15,5 +15,6 @@
 (require 'init-markdown-toc)
 (require 'init-quickrun)
 (require 'init-adoc-mode)
+(require 'init-find-file-in-project)
 
 (provide 'init-personal)
