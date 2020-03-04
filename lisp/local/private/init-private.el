@@ -8,5 +8,6 @@
 (require 'init-html-converter)
 (require 'init-org-protocol)
 (require 'init-miscellanies)
+(require 'init-whitespace-killer)
 
 (provide 'init-private)
