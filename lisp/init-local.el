@@ -14,9 +14,9 @@
 (push (expand-file-name "~/.emacs.d/lisp/local/personal") load-path)
 (push (expand-file-name "~/.emacs.d/lisp/local/individual") load-path)
 
-(require 'init-private)
-(require 'init-personal)
-(require 'init-individual)
+(require 'init-personal)    ;; 配置 `别人的，在 elpa 上的`
+(require 'init-individual)  ;; 配置 `别人的，没在 elpa 上的`
+(require 'init-private)     ;; 自己写的
 
 (provide 'init-local)
 ;;; init-local.el ends here
