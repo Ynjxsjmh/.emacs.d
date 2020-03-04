@@ -91,6 +91,9 @@
         ("P" "People (Contacts)" entry
          (file "E:/sourcecode/note/contacts.org")
          "* %(org-contacts-template-name)\n  :PROPERTIES:\n  :EMAIL: %(org-contacts-template-email)\n  :END:")
+        ("w" "Web site" entry  ;; org-protocol-capture-html template
+         (file "E:/sourcecode/note/refile.org")
+         "* %a :website:\n\n%U %?\n\n%:initial")
         ))
 
 ;; Config archive target
