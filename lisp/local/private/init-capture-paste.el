@@ -34,12 +34,13 @@
 
     (call-save-img-program absolute-img-path)
 
-    (if (nth 0 date)
-        (setq img-path (concat "https://raw.githubusercontent.com/" github-name "/" github-repo "/master/" img-dir "/" img-name))
-      (setq img-path relative-img-path)
-      )
+    (let* ((img-path (if (nth 0 date)
+                         (concat "https://raw.githubusercontent.com/" github-name "/" github-repo "/master/" img-dir "/" img-name)
+                       relative-img-path
+                       )))
 
-    (insert (insert-img-path-to-buffer img-path img-alt-text))
+      (insert (insert-img-path-to-buffer img-path img-alt-text))
+      )
     )
   )
 
