@@ -1,5 +1,8 @@
 (setq xbuff (generate-new-buffer "*my output*"))
 
+(defvar github-name "Ynjxsjmh")
+(defvar github-repo "ynjxsjmh.github.io")
+
 (defun my-org-screenshot ()
   "Take a screenshot into a time stamped unique-named file in the
    same directory as the org-buffer and insert a link to this file."
@@ -32,7 +35,7 @@
     (call-save-img-program absolute-img-path)
 
     (if (nth 0 date)
-        (setq img-path (concat "https://raw.githubusercontent.com/Ynjxsjmh/ynjxsjmh.github.io/master/" img-dir "/" img-name))
+        (setq img-path (concat "https://raw.githubusercontent.com/" github-name "/" github-repo "/master/" img-dir "/" img-name))
       (setq img-path relative-img-path)
       )
 
