@@ -17,6 +17,8 @@
 ;; 不让光标闪
 (blink-cursor-mode 0)
 
+(setq delete-by-moving-to-trash t)
+
 ;; maximize the window
 (setq initial-frame-alist (quote ((fullscreen . maximized))))
 
@@ -64,20 +66,6 @@
 	(while (search-forward "\\)" nil t)
         (replace-match "$"))
 )
-
-;;------------------------------------------------------------------------------
-(setq company-clang-arguments
-      (mapcar (lambda (item)(concat "-I" item))
-              (split-string
-               "
- C:\\CodeBlocksMinGW\\lib\\gcc\\mingw32\\5.1.0\\include\\c++
- C:\\CodeBlocksMinGW\\lib\\gcc\\mingw32\\5.1.0\\include\\c++\\mingw32
- C:\\CodeBlocksMinGW\\lib\\gcc\\mingw32\\5.1.0\\include\\c++\\backward
- C:\\CodeBlocksMinGW\\lib\\gcc\\mingw32\\5.1.0\\include
- C:\\CodeBlocksMinGW\\include
- C:\\CodeBlocksMinGW\\lib\\gcc\\mingw32\\5.1.0\\include-fixed
-"
-               )))
 
 ;;------------------------------------------------------------------------------
 
