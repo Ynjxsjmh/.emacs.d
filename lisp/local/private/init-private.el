@@ -9,5 +9,7 @@
 (require 'init-org-protocol)
 (require 'init-miscellanies)
 (require 'init-whitespace-killer)
+(require 'init-blog-post)
+(require 'init-capture-paste)
 
 (provide 'init-private)
