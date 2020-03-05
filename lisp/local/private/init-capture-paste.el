@@ -93,17 +93,14 @@
             (day (match-string 3 date-string)))
         (list day month year)))))
 
-(defun parse-time-from-buffer-name (buffer-name)
-  (let ((file-name-prefix (file-name-nondirectory buffer-name)))
-    (if (> 10 (length file-name-prefix))
-        (setq file-name "It is not what I want.")
-      (setq file-name file-name-prefix)))
 
-  (let* (
-         (possible-date (substring file-name 0 10))
-         (date (parse-date-string possible-date))
-         )
-    date))
+(defun parse-time-from-buffer-file-name (buffer-file-name)
+  "@stanley_110101011"
+  (if-let* ((file-name (file-name-nondirectory buffer-file-name))
+            (file-name (if (> (length file-name) 10) file-name))
+            (date (parse-date-string (substring file-name 0 10))))
+      date
+    (list nil nil)))
 
 
 (defun call-save-img-program (img-path)
