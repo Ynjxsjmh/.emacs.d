@@ -11,5 +11,8 @@
 (require 'init-whitespace-killer)
 (require 'init-blog-post)
 (require 'init-capture-paste)
+(require 'init-company)
+(require 'init-org-publish-project)
+(require 'init-lisp)
 
 (provide 'init-private)
