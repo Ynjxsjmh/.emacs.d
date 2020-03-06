@@ -24,9 +24,6 @@
 
 ;; 别人写的，但包不可以在 MELPA 或 ELPA 上找到的
 
-(let ((default-directory "~/.emacs.d/individual/"))
-  (normal-top-level-add-subdirs-to-load-path))
-
 (require 'init-aweshell)
 (require 'init-beancount)
 (require 'init-org-protocol-capture-html)
