@@ -19,6 +19,8 @@
 
 (setq delete-by-moving-to-trash t)
 
+(load-theme 'doom-solarized-light t)
+
 ;; maximize the window
 (setq initial-frame-alist (quote ((fullscreen . maximized))))
 
