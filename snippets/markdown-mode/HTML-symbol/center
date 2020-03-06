@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: center
-# key: <c
-# --
-
-<center>
-$1
-</center>
-$2

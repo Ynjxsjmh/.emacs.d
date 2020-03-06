@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: math-matrix-with-curly-braces
-# key: [
-# --
-
-\begin{Bmatrix}
-   a & b \\\\
-   c & d
-\end{Bmatrix}

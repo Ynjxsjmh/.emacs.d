@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: math-matrix-with-parentheses
-# key: [
-# --
-
-\begin{pmatrix}
-   a & b \\\\
-   c & d
-\end{pmatrix}

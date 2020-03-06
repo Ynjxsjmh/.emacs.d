@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: math-matrix-with-vertical-line
-# key: [
-# --
-
-\begin{vmatrix}
-   a & b \\\\
-   c & d
-\end{vmatrix}
