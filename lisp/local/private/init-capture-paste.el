@@ -8,7 +8,7 @@
    same directory as the org-buffer and insert a link to this file."
   (interactive)
 
-  (setq date (parse-time-from-buffer-name (buffer-file-name)))
+  (setq date (parse-time-from-buffer-file-name (buffer-file-name)))
 
   (if (nth 0 date)
       (setq img-dir (concat "img/" (nth 2 date) "/" (nth 1 date)))
