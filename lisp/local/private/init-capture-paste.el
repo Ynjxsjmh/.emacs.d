@@ -44,7 +44,7 @@
     )
   )
 
-(global-set-key (kbd "C-c u") 'my-org-screenshot)
+(global-set-key (kbd "C-c i i") 'my-org-screenshot)
 
 
 (defun insert-img-path-to-buffer (file-path img-alt-text)
