@@ -30,16 +30,25 @@
             (outline-minor-mode)
 ))
 
-(defun convert-asciidoc-to-html ()
+
+(setq adoc-publishing-blog-directory "e:/sourcecode/myblog/_posts/")
+
+(defun convert-asciidoc-to-html (&optional target-directory)
   (interactive)
-  (shell-command (format "asciidoctor \"%s\"" buffer-file-name)))
+  (if target-directory
+      (shell-command (format "asciidoctor \"%s\" -D \"%s\"" buffer-file-name target-directory))
+    (shell-command (format "asciidoctor \"%s\"" buffer-file-name))
+      )
+  )
 
 
 (defhydra hydra-adoc (:color pink)
   "
 _h_ Export to HTML
+_b_ Export to HTML To Blog
 "
   ("h" convert-asciidoc-to-html nil :exit t)
+  ("b" (convert-asciidoc-to-html adoc-publishing-blog-directory) nil :exit t)
   ("q" nil "quit"))
 (define-key adoc-mode-map (kbd "C-c C-e") 'hydra-adoc/body)
 
