@@ -1,4 +1,16 @@
-;; 原来管理包的方式感觉过于负责，如果那个包不做什么配置直接require得了，不新建对应的 init 文件了
+;; 原来管理包的方式感觉过于复杂，如果那个包不做什么配置直接require得了，不新建对应的 init 文件了
+
+(setq melpa-include-packages (append melpa-include-packages
+                                     '(
+	                                   flymd
+                                       lsp-haskell
+                                       outline-magic
+                                       quickrun
+                                       org-noter
+                                       faceup
+                                       racket-mode
+                                       )))
+
 
 
 ;; 包可以在 MELPA 或 ELPA 上找到的，但是自己下的，与之前 redguard 下的做区分
@@ -20,6 +32,7 @@
 (require 'init-adoc-mode)
 (require 'init-find-file-in-project)
 (require 'init-ivy)
+(require 'init-racket-mode)
 
 
 ;; 别人写的，但包不可以在 MELPA 或 ELPA 上找到的

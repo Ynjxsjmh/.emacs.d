@@ -107,12 +107,7 @@
     workgroups2
     zoutline
     company-c-headers
-    company-statistics
-	flymd
-    lsp-haskell
-    outline-magic
-    quickrun
-    org-noter)
+    company-statistics)
   "Packages to install from melpa-unstable.")
 
 (defvar melpa-stable-banned-packages nil
