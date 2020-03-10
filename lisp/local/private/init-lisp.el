@@ -22,5 +22,16 @@
              (paredit-mode t)
              ))
 
+(add-hook  'racket-mode
+           (lambda ()
+             ;;(setq show-paren-style 'expression)
+             ;;(setq show-paren-delay 0)
+             (show-paren-mode 1)
+             #'turn-on-auto-fill
+             (rainbow-delimiters-mode t)
+             (paredit-mode t)
+             ))
+
+
 (provide 'init-lisp)
 ;;; init-lisp.el ends here
