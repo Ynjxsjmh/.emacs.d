@@ -1,4 +1,65 @@
-(setq xbuff (generate-new-buffer "*my output*"))
+;;; clipi-paste.el --- Save clipboard image to disk file, and insert file link to current point.
+
+;; Filename: clipi-paste.el
+;; Description: Save clipboard image to disk file, and insert file link to current point.
+;; Author: Ynjxsjmh <ynjxsjmh@gmail.com>
+;; Maintainer: Ynjxsjmh <ynjxsjmh@gmail.com>
+;; Copyright (C) 2020, Ynjxsmh, all rights reserved.
+;; Created: 2020-03-05 03:23
+;; Version: 0.1
+;; Last-Updated: <2020-03-10 Tue 23:09>
+;;           By: Ynjxsjmh
+
+;; Keywords:
+;; Compatibility: GNU Emacs 25.3
+;;
+;; Features that might be required by this library:
+;;
+;;
+;;
+
+;;; This file is NOT part of GNU Emacs
+
+;;; License
+;;
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation; either version 3, or (at your option)
+;; any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program; see the file COPYING.  If not, write to
+;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
+;; Floor, Boston, MA 02110-1301, USA.
+
+;;; Commentary:
+;;
+;; Save clipboard image to disk file, and insert file link to current point.
+;;
+;; It's an Emacs extension, with it you can just use one key to save clipboard
+;; image to disk file, and at the same time insert the file link(org-mode/markdown-mode/adoc-mode)
+;; or file path(other mode) to current point.
+
+;;; Acknowledgements:
+;; dnxbjyj/pasteex-mode
+;;
+;;
+
+;;; TODO
+;;
+;;
+;;
+
+;;; Require
+
+
+;;; Code:
+
 
 (defvar github-name "Ynjxsjmh")
 (defvar github-repo "ynjxsjmh.github.io")
