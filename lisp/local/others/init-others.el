@@ -42,6 +42,7 @@
 (require 'init-org-protocol-capture-html)
 (require 'init-grep-dired)
 (require 'init-sly-el-indent)
+(require 'ahk-mode)
 
 
 
