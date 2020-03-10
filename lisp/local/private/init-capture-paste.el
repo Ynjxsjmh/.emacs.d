@@ -22,10 +22,10 @@
     (make-directory absolute-img-dir :parents))
 
   (let* (
-         (img-name
-          (concat
-           (make-temp-name
-            (concat (format-time-string "%Y%m%d_%H%M%S_")) ) ".png"))
+         (input-img-name (read-string "Input image name (default current timestamp): "))
+         (img-name (if (string= "" input-img-name)
+                       (concat (make-temp-name (concat (format-time-string "%Y%m%d_%H%M%S_")) ) ".png")
+                     (concat input-img-name ".png")))
 
          (absolute-img-path (concat absolute-img-dir img-name))
          (relative-img-path (concatenate 'string "./" img-dir "/" img-name))
