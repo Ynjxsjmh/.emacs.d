@@ -182,5 +182,5 @@
       )))
   )
 
-(provide 'init-capture-paste)
-;;; init-capture-paste.el ends here
+(provide 'clipi-paste)
+;;; clipi-paste ends here

@@ -10,9 +10,10 @@
 (require 'init-miscellanies)
 (require 'init-whitespace-killer)
 (require 'init-blog-post)
-(require 'init-capture-paste)
+(require 'clipi-paste)
 (require 'init-company)
 (require 'init-org-publish-project)
 (require 'init-lisp)
+(require 'init-epub)
 
 (provide 'init-private)
