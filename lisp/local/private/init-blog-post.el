@@ -2,7 +2,7 @@
 ;; Write Blog
 (defvar post-dir "d:/Dropbox/blog/")
 (defun blog-post (input-filetype post-title)
-  (interactive "sChoose filetype: [a]sciidoc [o]rg [m]arkdown: \nsEnter titile: ")
+  (interactive "sChoose filetype: [a]sciidoc [o]rg [m]arkdown: \nsEnter title: ")
 
   (defvar post-filetype nil)
 
