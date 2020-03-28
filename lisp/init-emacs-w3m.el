@@ -60,7 +60,7 @@
   "`w3m-display-hook' must search current buffer with this keyword twice if not nil")
 
 (defun w3m-guess-keyword (&optional encode-space-with-plus)
-  (unless (featurep 'w3m) (require 'w3m))
+  (my-ensure 'w3m)
   (let* ((keyword (my-use-selected-string-or-ask "Enter keyword:"))
          (encoded-keyword (w3m-url-encode-string (setq w3m-global-keyword keyword))))
     ;; some search requires plus sign to replace space
@@ -69,7 +69,7 @@
       encoded-keyword)))
 
 (defun w3m-customized-search-api (search-engine &optional encode-space-with-plus)
-  (unless (featurep 'w3m) (require 'w3m))
+  (my-ensure 'w3m)
   (w3m-search search-engine (w3m-guess-keyword encode-space-with-plus)))
 
 (defun w3m-stackoverflow-search ()
@@ -178,9 +178,8 @@
 
 (defun w3mext-download-rss-stream ()
   (interactive)
-  (let (url cmd)
-    (when (or (string= major-mode "w3m-mode") (string= major-mode "gnus-article-mode"))
-      (setq url (w3m-anchor))
+  (when (or (string= major-mode "w3m-mode") (string= major-mode "gnus-article-mode"))
+    (let* ((url (w3m-anchor)) cmd)
       (cond
        ((or (not url) (string= url "buffer://"))
         (message "This link is not video/audio stream."))
@@ -188,15 +187,14 @@
         (setq cmd (format "curl -L %s > %s.%s"  url (w3mext-subject-to-target-filename) (file-name-extension url)))
         (kill-new cmd)
         (my-pclip cmd)
-        (message "%s => clipd/kill-ring" cmd))))
-    ))
+        (message "%s => clipboard/kill-ring" cmd))))))
 
 (eval-after-load 'w3m
   '(progn
      (define-key w3m-mode-map (kbd "C-c b") 'w3mext-open-link-or-image-or-url)
      (add-hook 'w3m-display-hook
                (lambda (url)
-                 (let ((title (or w3m-current-title url)))
+                 (let* ((title (or w3m-current-title url)))
                    (when w3m-global-keyword
                      ;; search keyword twice, first is url, second is your input,
                      ;; third is actual result

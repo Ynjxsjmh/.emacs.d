@@ -1,4 +1,4 @@
-jrequest/
+request/
 .depend
 pyim/
 anaconda-mode/
@@ -67,4 +67,6 @@ bookmarks
 *.mp4
 *.ogg
 nov-places
+transient/
+
 individual

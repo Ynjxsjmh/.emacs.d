@@ -48,3 +48,4 @@ Company backend ’company-clang’ could not be initialized: Company found no c
 #+END_SRC
 
 This means you don't have clang executable in your PATH or you haven't download it at all. For Windows user, you can download it using Cygwin. Besides this, you need to add the Cygwin =bin= folder to your PATH.
+

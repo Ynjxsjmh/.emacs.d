@@ -1,6 +1,7 @@
 ;; -*- coding: utf-8; lexical-binding: t; -*-
 
 ;; @see https://github.com/abo-abo/hydra
+;; color could: red, blue, amaranth, pink, teal
 
 ;; use similar key bindings as init-evil.el
 (defhydra hydra-launcher (:color blue)
@@ -14,6 +15,7 @@
 [_v_] Show/Hide undo      [_O_] Emms Open       [_pa_] Backward Paragraph (M-{)
 [_b_] Switch Gnus buffer  [_L_] Emms Playlist   [_pe_] Forward Paragraph (M-})
 [_f_] Recent file         [_w_] Pronounce word
+[_e_] Erase buffer
 [_d_] Recent directory
 [_h_] Dired CMD history
 [_E_] Enable typewriter
@@ -27,6 +29,7 @@
   ("d" counsel-recent-directory)
   ("ss" wg-create-workgroup)
   ("ll" my-wg-switch-workgroup)
+  ("e" erase-visible-buffer)
   ("E" toggle-typewriter)
   ("V" twm/toggle-sound-style)
   ("v" undo-tree-visualize)
@@ -48,7 +51,7 @@
   ("O" emms-play-playlist)
   ("b" dianyou-switch-gnus-buffer)
   ("L" emms-playlist-mode-go)
-  ("q" nil))
+  ("q" nil :color red))
 
 ;; Because in message-mode/article-mode we've already use `y' as hotkey
 (global-set-key (kbd "C-c C-y") 'hydra-launcher/body)
@@ -115,7 +118,7 @@
        "
 [_o_] Save attachment        [_F_] Forward
 [_v_] Play video/audio       [_r_] Reply
-[_d_] CLI to dowloand stream [_R_] Reply with original
+[_d_] CLI to download stream [_R_] Reply with original
 [_b_] Open external browser  [_w_] Reply all (S w)
 [_f_] Click link/button      [_W_] Reply all with original (S W)
 [_g_] Focus link/button      [_b_] Switch Gnus buffer
@@ -227,15 +230,15 @@
                 (copy-yank-str (funcall fn (dired-file-name-at-point)))))
      (defhydra hydra-dired (:color blue)
        "
-^Misc^                      ^File^             ^Copy Info^
-----------------------------------------------------------------
-[_vv_] video2mp3            [_R_] Move         [_pp_] Path
-[_aa_] Record by mp3        [_cf_] New         [_nn_] Name
-[_zz_] Play wav&mp3         [_rr_] Rename      [_bb_] Base
-[_cc_] Last command         [_ff_] Find        [_dd_] directory
+^Misc^                      ^File^              ^Copy Info^
+-----------------------------------------------------------------
+[_vv_] video2mp3            [_R_] Move          [_pp_] Path
+[_aa_] Record by mp3        [_cf_] New          [_nn_] Name
+[_zz_] Play wav&mp3         [_rr_] Rename       [_bb_] Base
+[_cc_] Last command         [_ff_] Find         [_dd_] directory
 [_sa_] Fetch all subtitles  [_C_]  Copy
 [_s1_] Fetch on subtitle    [_rb_] Change base
-[_+_] Create directory
+[_+_] Create directory      [_dd_] Diff 2 files
 "
        ("sa" (shell-command "periscope.py -l en *.mkv *.mp4 *.avi &"))
        ("s1" (let* ((video-file (dired-file-name-at-point))
@@ -252,7 +255,8 @@
        ("zz" my-play-both-mp3-and-wav)
        ("C" dired-do-copy)
        ("R" dired-rename-file)
-       ("cf"find-file)
+       ("cf" find-file)
+       ("dd" my-ediff-files)
        ("rr" dired-toggle-read-only)
        ("ff" (lambda (regexp)
                (interactive "sMatching regexp: ")
@@ -304,9 +308,6 @@ _i_ indent-tabs-mode:   %`indent-tabs-mode
 ;; {{ @see https://github.com/abo-abo/hydra/wiki/Window-Management
 
 ;; helpers from https://github.com/abo-abo/hydra/blob/master/hydra-examples.el
-(unless (featurep 'windmove)
-  (require 'windmove))
-
 (defun hydra-move-splitter-left (arg)
   "Move window splitter left."
   (interactive "p")
@@ -397,33 +398,44 @@ _SPC_ cancel _o_nly this     _d_elete
 ;; }}
 
 ;; {{ git-gutter, @see https://github.com/abo-abo/hydra/wiki/Git-gutter
-(defhydra hydra-git-gutter (:body-pre (git-gutter-mode 1)
-                                      :hint nil)
-  "
-Git gutter:
-  _j_: next hunk     _s_tage hunk   _q_uit
-  _k_: previous hunk _r_evert hunk  _Q_uit and deactivate git-gutter
-  _h_: first hunk    _p_opup hunk
-  _l_: last hunk     set _R_evision
+(defhydra hydra-git (:body-pre
+                     (progn
+                       (git-gutter-mode 1)
+                       (setq git-link-use-commit t))
+                     :after-exit (setq git-link-use-commit nil)
+                     :color blue)
 "
-  ("j" git-gutter:next-hunk)
-  ("k" git-gutter:previous-hunk)
-  ("h" (progn (goto-char (point-min))
-              (git-gutter:next-hunk 1)))
-  ("l" (progn (goto-char (point-min))
-              (git-gutter:previous-hunk 1)))
-  ("s" git-gutter:stage-hunk)
-  ("r" git-gutter:revert-hunk)
-  ("p" git-gutter:popup-hunk)
-  ("R" git-gutter:set-start-revision)
-  ("q" nil :color blue)
-  ("Q" (progn (git-gutter-mode -1)
-              ;; git-gutter-fringe doesn't seem to
-              ;; clear the markup right away
-              (sit-for 0.1)
-              (git-gutter:clear))
-   :color blue))
-(global-set-key (kbd "C-c C-g") 'hydra-git-gutter/body)
+Git:
+[_dd_] Diff         [_i_] Gist selected
+[_dc_] Diff staged  [_s_] Show commit
+[_dr_] Diff range   [_r_] Reset gutter
+[_au_] Add modified [_h_] Gutter => HEAD
+[_cc_] Commit       [_l_] Log selected/file
+[_ca_] Amend        [_b_] Branches
+[_ja_] Amend silent [_k_] Git commit link
+[_tt_] Stash        [_Q_] Quit gutter
+[_ta_] Apply Stash
+"
+  ("i" gist-region)
+  ("r" git-gutter-reset-to-default)
+  ("s" my-git-show-commit)
+  ("l" magit-log-buffer-file)
+  ("b" magit-show-refs-popup)
+  ("h" git-gutter-reset-to-head-parent)
+  ("k" git-link)
+  ("g" magit-status)
+  ("ta" magit-stash-apply)
+  ("tt" magit-stash)
+  ("dd" magit-diff-dwim)
+  ("dc" magit-diff-staged)
+  ("dr" (progn (magit-diff-range (my-git-commit-id))))
+  ("cc" magit-commit-popup)
+  ("ca" magit-commit-amend)
+  ("ja" (magit-commit-amend "--reuse-message=HEAD"))
+  ("au" magit-stage-modified)
+  ("Q" git-gutter-toggle)
+  ("q" nil))
+(global-set-key (kbd "C-c C-g") 'hydra-git/body)
 ;; }}
 
 (defhydra hydra-search ()
