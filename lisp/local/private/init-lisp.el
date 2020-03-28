@@ -1,5 +1,11 @@
+(require 'paren)
 (require 'paredit)
 (require 'rainbow-delimiters)
+
+;; https://www.emacswiki.org/emacs/ShowParenMode
+(set-face-background 'show-paren-match "#000")
+(set-face-foreground 'show-paren-match "#00ff7f")
+(set-face-attribute 'show-paren-match nil :weight 'extra-bold)
 
 ;; https://www.reddit.com/r/emacs/comments/4zy44s/question_in_emacs_lisp_or_lisp_how_do_you_guys/d6zsiue
 (add-hook  'emacs-lisp-mode-hook
