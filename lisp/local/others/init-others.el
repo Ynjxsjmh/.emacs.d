@@ -1,5 +1,8 @@
 ;; 原来管理包的方式感觉过于复杂，如果那个包不做什么配置直接require得了，不新建对应的 init 文件了
 
+;; List of visible packages from melpa-unstable (http://melpa.org).
+;; Please add the package name into `melpa-include-packages'
+;; if it's not visible after  `list-packages'.
 (setq melpa-include-packages (append melpa-include-packages
                                      '(
 	                                   flymd
@@ -9,6 +12,8 @@
                                        org-noter
                                        faceup
                                        racket-mode
+                                       org-rich-yank
+                                       ob-ipython
                                        )))
 
 
@@ -33,16 +38,19 @@
 (require 'init-find-file-in-project)
 (require 'init-ivy)
 (require 'init-racket-mode)
-
+(require 'ahk-mode)
+(require 'init-elpy)
+(require 'init-maple-header)
+(require 'ob-ipython)
 
 ;; 别人写的，但包不可以在 MELPA 或 ELPA 上找到的
 
 (require 'init-aweshell)
 (require 'init-beancount)
 (require 'init-org-protocol-capture-html)
-(require 'init-grep-dired)
 (require 'init-sly-el-indent)
-(require 'ahk-mode)
+(require 'init-flywrap)
+(require 'color-rg)
 
 
 
