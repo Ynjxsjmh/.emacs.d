@@ -8,6 +8,7 @@
 (require-package 'lsp-mode)
 (require-package 'pangu-spacing)
 (require-package 'markdown-toc)
+(require-package 'skeleton)
 
 (push (expand-file-name "~/.emacs.d/lisp") load-path)
 (push (expand-file-name "~/.emacs.d/lisp/local/private") load-path)
