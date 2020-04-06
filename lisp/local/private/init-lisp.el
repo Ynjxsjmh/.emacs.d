@@ -3,7 +3,7 @@
 (require 'rainbow-delimiters)
 
 ;; https://www.emacswiki.org/emacs/ShowParenMode
-(set-face-background 'show-paren-match "#000")
+(set-face-background 'show-paren-match "#fff")
 (set-face-foreground 'show-paren-match "#00ff7f")
 (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
 
