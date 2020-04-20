@@ -1,3 +1,9 @@
+;; 用于 require 和 lisp 目录下重复的文件
+(defun require-local (pkg &optional maybe-disabled)
+  "Load PKG if MAYBE-DISABLED is nil or it's nil but start up in normal slowly."
+  (when (or (not maybe-disabled) (not (boundp 'startup-now)))
+    (load (file-truename (format "~/.emacs.d/lisp/local/private/%s" pkg)) t t)))
+
 (require-package 'org-download)
 (require-package 'flymd)
 (require-package 'auctex)
