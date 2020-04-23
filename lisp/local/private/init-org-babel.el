@@ -22,6 +22,7 @@
    (plantuml . t)
    (python . t)
    (R . t)
+   (racket . t)
    (ruby . t)
    (scheme . t)
    (screen . nil)
