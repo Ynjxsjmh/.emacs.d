@@ -50,7 +50,7 @@
 (require 'init-org-protocol-capture-html)
 (require 'init-sly-el-indent)
 (require 'init-flywrap)
-(require 'color-rg)
+(require 'init-color-rg)
 
 
 
