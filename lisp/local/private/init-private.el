@@ -1,7 +1,7 @@
 ;; 自己写的
 
 (require 'init-gtd)
-(require 'init-org)
+(require-local 'init-org)
 (require 'init-org-babel)
 (require 'init-org-protocol)
 (require 'init-org-publish-project)
@@ -14,7 +14,7 @@
 (require 'init-blog-post)
 (require 'clipi-paste)
 (require 'init-company)
-(require 'init-lisp)
+(require-local 'init-lisp)
 (require 'init-epub)
 (require 'init-auto-insert)
 
