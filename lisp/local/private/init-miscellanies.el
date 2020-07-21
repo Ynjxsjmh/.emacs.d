@@ -39,7 +39,7 @@
 
 (setq org-latex-toc-command "\\tableofcontents \\clearpage")
 
-(add-to-list 'auto-mode-alist '("/\\.gitclone\\'" . 'gitconfig-mode))
+(add-to-list 'auto-mode-alist '("/\\.gitclone\\'" . gitconfig-mode))
 
 ;;------------------------------------------------------------------------------
 ;; my function
