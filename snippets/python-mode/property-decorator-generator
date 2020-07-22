@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: property-decorator-generator
+# key: p
+# --
+
+    @property
+    def $1(self):
+        return self.__$1
+
+    @$1.setter
+    def $1(self, $1):
+        self.__$1 = $1
+
