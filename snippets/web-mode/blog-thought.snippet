@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: blog-thought
+# key: t
+# contributor: Winy Song <ynjxsjmh AT gmail DOT com>
+# --
+
+        <tr class="">
+            <td><a id="`(format-time-string "%Y%m%d%H%M")`"></a>
+                <div class="thought">
+                     $1<br>
+                </div>
+            </td>
+            <td>
+                <div class="thought-brief">
+                     $2
+                </div>
+                <div class="thought-meta">
+                    发布于 `(format-time-string "%F")`
+                </div>
+            </td>
+        </tr>
