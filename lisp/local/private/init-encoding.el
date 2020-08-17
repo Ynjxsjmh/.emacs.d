@@ -6,7 +6,12 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 ;;设置写入文件编码
-(setq default-buffer-file-coding-system 'utf-8)
+;; backwards compatibility since default-buffer-file-coding-system
+;; is deprecated in 23.2.
+(if (boundp 'buffer-file-coding-system)
+    (setq-default buffer-file-coding-system 'utf-8)
+  (setq default-buffer-file-coding-system 'utf-8))
+
 
 ;; 文件名使用GBK编码
 ;; (setq file-name-coding-system 'utf-8)
