@@ -58,12 +58,23 @@
                         '(("^ *\([+]\) "
                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "◦"))))))
 
-(setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "†")
-                                       ("#+END_SRC" . "†")
-                                       ("#+begin_src" . "†")
-                                       ("#+end_src" . "†")
+
+(setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "💻")
+                                       ("#+END_SRC" . "💻")
+                                       ("#+begin_src" . "💻")
+                                       ("#+end_src" . "💻")
+                                       ("#+BEGIN_QUOTE" . "🕮")
+                                       ("#+END_QUOTE" . "🕮")
+                                       ("#+begin_quote" . "🕮")
+                                       ("#+end_quote" . "🕮")
+                                       ("#+BEGIN_EXAMPLE" . "🌰")
+                                       ("#+END_EXAMPLE" . "🌰")
+                                       ("#+begin_example" . "🌰")
+                                       ("#+end_example" . "🌰")
                                        (">=" . "≥")
-                                       ("=>" . "⇨")))
+                                       ("<=" . "≤")
+                                       ("=>" . "⇨")
+                                       ("<=" . "⇦")))
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 (add-hook 'org-mode-hook 'prettify-symbols-mode)
 
