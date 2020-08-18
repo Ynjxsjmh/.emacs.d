@@ -121,6 +121,12 @@
 
 (add-hook 'org-agenda-finalize-hook #'ljg/org-agenda-time-grid-spacing)
 
+;; https://emacs-china.org/t/orgmode/9740/18
+;; 让中文也可以不加空格就使用行内格式
+(setq org-emphasis-regexp-components '("-[:multibyte:][:space:]('\"{" "-[:multibyte:][:space:].,:!?;'\")}\\[" "[:space:]" "." 1))
+(org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+(org-element-update-syntax)
+
 
 (defun my-org-inline-css-hook (exporter)
   "Insert custom inline css"
