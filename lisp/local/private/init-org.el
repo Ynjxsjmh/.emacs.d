@@ -27,8 +27,7 @@
       org-hide-emphasis-markers t
       org-fontify-done-headline t
       org-hide-leading-stars t
-      org-pretty-entities t
-      org-odd-levels-only t)
+      org-pretty-entities t)
 
 (setq org-ellipsis "⤵")
 
