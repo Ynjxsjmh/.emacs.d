@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: ending
+# key: <e
+# --
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-command-extra-options: "-shell-escape"
+%%% TeX-master: t
+%%% TeX-engine: xetex
+%%% End:
