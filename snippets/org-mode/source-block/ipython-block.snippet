@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: ipython block
+# key: i
+# contributor: Winy Song <ynjxsjmh AT gmail DOT com>
+# --
+
+#+BEGIN_SRC ipython :session ${1::ipyfile ${2:$$(let ((temporary-file-directory "./")) (make-temp-file "py" nil ".png"))} }:exports ${3:both}
+$0
+#+END_SRC
