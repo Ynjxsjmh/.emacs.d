@@ -182,5 +182,21 @@
       )))
   )
 
+(defun yank-img-at-point-to-clipboard ()
+  "Yank the image at point to the clipboard as image/png."
+  (interactive)
+  (let ((img (get-text-property (point) 'display)))
+    (if (eq (car img) 'image)
+        (let ((file (plist-get (cdr img) ':file)))
+            (yank-img-to-clipboard file))
+      (message "Point is not at an image."))))
+
+(global-set-key (kbd "C-c i y") 'yank-img-at-point-to-clipboard)
+
+(defun yank-img-to-clipboard(img-path)
+  (cond
+   ((string= system-type "windows-nt")
+    (shell-command (concat "powershell -command \"Add-Type -AssemblyName System.Drawing; Add-Type -AssemblyName System.Windows.Forms; $file = get-item('" img-path "'); $img = [System.Drawing.Image]::Fromfile($file); [System.Windows.Forms.Clipboard]::SetImage($img); Write-Output 'image saved to clipboard';\"")))))
+
 (provide 'clipi-paste)
 ;;; clipi-paste ends here
