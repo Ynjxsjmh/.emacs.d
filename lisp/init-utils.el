@@ -7,6 +7,26 @@
          (require ,feature)
        (error nil))))
 
+(defun my-git-root-dir ()
+  "Git root directory."
+  (locate-dominating-file default-directory ".git"))
+
+(defun my-git-files-in-rev-command (rev level)
+  "Return git command line to show files in REV and LEVEL."
+  (unless level (setq level 0))
+  (concat "git diff-tree --no-commit-id --name-only -r "
+          rev
+          (make-string level ?^)))
+
+(defun nonempty-lines (s)
+  (split-string s "[\r\n]+" t))
+
+(defun my-lines-from-command-output (command)
+  "Return lines of COMMAND output."
+  (let* ((output (string-trim (shell-command-to-string command)))
+         (cands (nonempty-lines output)))
+    (delq nil (delete-dups cands))))
+
 (defun run-cmd-and-replace-region (cmd)
   "Run CMD in shell on selected region or whole buffer and replace it with cli output."
   (let* ((orig-point (point))
@@ -33,25 +53,31 @@
                  (mapcar (lambda (dir)
                            (unless (string-match-p "^\\." dir)
                              (expand-file-name dir)))
-                         (directory-files "~/.emacs.d/site-lisp/")))
+                         (directory-files my-site-lisp-dir)))
            load-path))))
 
 ;; {{ copied from http://ergoemacs.org/emacs/elisp_read_file_content.html
-(defun get-string-from-file (file)
+(defun my-get-string-from-file (file)
   "Return FILE's content."
   (with-temp-buffer
     (insert-file-contents file)
     (buffer-string)))
 
-(defun read-lines (file)
+(defun my-read-lines (file)
   "Return a list of lines of FILE."
-  (with-temp-buffer
-    (insert-file-contents file)
-    (split-string (buffer-string) "\n" t)))
+  (split-string (my-get-string-from-file file) "\n" t))
 ;; }}
 
-(defun nonempty-lines (s)
-  (split-string s "[\r\n]+" t))
+(defun my-write-to-file (str file)
+  "Write STR to FILE."
+  (with-temp-buffer
+    (insert str)
+    (write-file (file-truename file))))
+
+(defun my-write-to-missing-file (str file)
+  "Write STR to FILE if it's missing."
+  (unless (file-exists-p file)
+    (my-write-to-file str file)))
 
 ;; Handier way to add modes to auto-mode-alist
 (defun add-auto-mode (mode &rest patterns)
@@ -159,13 +185,19 @@ If N is nil, use `ivy-mode' to browse `kill-ring'."
   (buffer-substring-no-properties (point-min) (point-max)))
 
 (defun my-selected-str ()
+  "Get string of selected region."
   (buffer-substring-no-properties (region-beginning) (region-end)))
 
 (defun my-use-selected-string-or-ask (&optional hint)
-  "Use selected region or ask user input for string."
-  (if (region-active-p) (my-selected-str)
-    (if (or (not hint) (string= "" hint)) (thing-at-point 'symbol)
-      (read-string hint))))
+  "Use selected region or ask for input.
+If HINT is empty, use symbol at point."
+  (cond
+   ((region-active-p)
+    (my-selected-str))
+   ((or (not hint) (string= "" hint))
+    (thing-at-point 'symbol))
+   (t
+    (read-string hint))))
 
 (defun delete-this-file ()
   "Delete the current file, and kill the buffer."
@@ -271,23 +303,37 @@ you can '(setq my-mplayer-extra-opts \"-ao alsa -vo vdpau\")'.")
   "Get clipboard content."
   (let* ((powershell-program (executable-find "powershell.exe")))
     (cond
-     ((and (memq system-type '(gnu gnu/linux gnu/kfreebsd))
-           powershell-program)
+     ;; Windows
+     ((fboundp 'w32-get-clipboard-data)
+      ;; `w32-set-clipboard-data' makes `w32-get-clipboard-data' always return null
+      (w32-get-clipboard-data))
+
+     ;; Windows 10
+     (powershell-program
       (string-trim-right
        (with-output-to-string
          (with-current-buffer standard-output
            (call-process powershell-program nil t nil "-command" "Get-Clipboard")))))
+
+     ;; xclip can handle
      (t
       (xclip-get-selection 'clipboard)))))
 
 (defun my-pclip (str-val)
-  "Set clipboard content."
+  "Put STR-VAL into clipboard."
   (let* ((win64-clip-program (executable-find "clip.exe")))
     (cond
-     ((and win64-clip-program (memq system-type '(gnu gnu/linux gnu/kfreebsd)))
+     ;; Windows
+     ((fboundp 'w32-set-clipboard-data)
+      (w32-set-clipboard-data str-val))
+
+     ;; Windows 10
+     ((and win64-clip-program)
       (with-temp-buffer
         (insert str-val)
         (call-process-region (point-min) (point-max) win64-clip-program)))
+
+     ;; xclip can handle
      (t
       (xclip-set-selection 'clipboard str-val)))))
 ;; }}
@@ -331,13 +377,42 @@ For example,
     (add-hook 'shell-mode-hook #'my-windows-shell-mode-coding)
     (add-hook 'inferior-python-mode-hook #'my-windows-shell-mode-coding)
 
-    (defadvice org-babel-execute:python (around org-babel-execute:python-hack activate)
+    (defun my-org-babel-execute:python-hack (orig-func &rest args)
       ;; @see https://github.com/Liu233w/.spacemacs.d/issues/6
       (let* ((coding-system-for-write 'utf-8))
-        ad-do-it)))
+        (apply orig-func args)))
+    (advice-add 'org-babel-execute:python :around #'my-org-babel-execute:python-hack))
+
    (t
     (set-language-environment "UTF-8")
     (prefer-coding-system 'utf-8))))
 ;; }}
+
+(defun my-skip-white-space (start step)
+  "Skip white spaces from START, return position of first non-space character.
+If STEP is 1,  search in forward direction, or else in backward direction."
+  (let* ((b start)
+         (e (if (> step 0) (line-end-position) (line-beginning-position))))
+    (save-excursion
+      (goto-char b)
+      (while (and (not (eq b e)) (memq (following-char) '(9 32)))
+        (forward-char step))
+      (point))))
+
+(defun my-comint-current-input-region ()
+  "Region of current shell input."
+  (cons (process-mark (get-buffer-process (current-buffer)))
+        (line-end-position)))
+
+(defun my-comint-kill-current-input ()
+  "Kill current input in shell."
+  (interactive)
+  (let* ((region (my-comint-current-input-region)))
+    (kill-region (car region) (cdr region))))
+
+(defun my-comint-current-input ()
+  "Get current input in shell."
+  (let* ((region (my-comint-current-input-region)))
+    (string-trim (buffer-substring-no-properties (car region) (cdr region)))))
 
 (provide 'init-utils)

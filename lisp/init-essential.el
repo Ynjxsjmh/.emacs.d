@@ -38,35 +38,69 @@
       (counsel-etags-grep)))))
 
 ;; {{ message buffer things
-(defun erase-one-visible-buffer (buf-name)
-  "Erase the content of visible buffer with BUF-NAME."
+(defun my-search-backward-prompt (n)
+  "Search backward for N prompt.
+Return the line beginning of prompt line."
+  (let* (rlt
+         (first-line-end-pos (save-excursion
+                               (goto-char (point-min))
+                               (line-end-position))))
+    (save-excursion
+      (while (and (> (line-beginning-position) first-line-end-pos)
+                  (> n 0))
+        (when (evilmi-prompt-line-p)
+          (setq n (1- n))
+          (setq rlt (line-beginning-position)))
+        (forward-line -1)))
+    rlt))
+
+(defun my-erase-one-visible-buffer (buf-name &optional n)
+  "Erase the content of visible buffer with BUF-NAME.
+Keep latest N cli program output if it's not nil."
   (let* ((original-window (get-buffer-window))
-         (target-window (get-buffer-window buf-name)))
+         (target-window (get-buffer-window buf-name))
+         beg)
     (cond
      ((not target-window)
       (message "Buffer %s is not visible!" buf-name))
      (t
       (select-window target-window)
-      (let ((inhibit-read-only t))
-        (erase-buffer))
+      (let* ((inhibit-read-only t))
+        (my-ensure 'evil-matchit-terminal)
+        (when (and n (> n 0) (fboundp 'evilmi-prompt-line-p))
+          ;; skip current prompt line
+          (forward-line -2)
+          (setq beg (my-search-backward-prompt n)))
+        (cond
+         (beg
+          (delete-region (point-min) beg))
+         (t
+          (erase-buffer))))
       (select-window original-window)))))
 
-(defun erase-visible-buffer (&optional n)
+(defun my-erase-visible-buffer (&optional n)
   "Erase the content of the *Messages* buffer.
 N specifies the buffer to erase."
   (interactive "P")
   (cond
    ((null n)
-    (erase-one-visible-buffer "*Messages*") )
+    (my-erase-one-visible-buffer "*Messages*"))
 
    ((eq 1 n)
-    (erase-one-visible-buffer "*shell*"))
+    (my-erase-one-visible-buffer "*shell*"))
 
    ((eq 2 n)
-    (erase-one-visible-buffer "*Javascript REPL*"))
+    (my-erase-one-visible-buffer "*Javascript REPL*"))
 
    ((eq 3 n)
-    (erase-one-visible-buffer "*eshell*"))))
+    (my-erase-one-visible-buffer "*eshell*"))))
+
+(defun my-erase-current-buffer (&optional n)
+  "Erase current buffer even it's read-only.
+Keep N cli output if it's not nil."
+  (interactive "P")
+  (my-erase-one-visible-buffer (buffer-name (current-buffer)) n)
+  (goto-char (point-max)))
 ;; }}
 
 ;; {{ narrow region
@@ -140,12 +174,11 @@ If USE-INDIRECT-BUFFER is not nil, use `indirect-buffer' to hold the widen conte
    (t (error "Please select a region to narrow to"))))
 ;; }}
 
-(defun my-counsel-grep-or-swiper (&optional other-source)
+(defun my-swiper (&optional other-source)
   "Search current file.
 If OTHER-SOURCE is 1, get keyword from clipboard.
 If OTHER-SOURCE is 2, get keyword from `kill-ring'."
   (interactive "P")
-  (message "other-source=%s" other-source)
   (let* ((keyword (cond
                    ((eq 1 other-source)
                     (cliphist-select-item))
@@ -153,12 +186,70 @@ If OTHER-SOURCE is 2, get keyword from `kill-ring'."
                     (my-select-from-kill-ring 'identity))
                    ((region-active-p)
                     (my-selected-str)))))
-    ;; better performance, got Cygwin grep installed on Windows always
-    (counsel-grep-or-swiper keyword)))
+    ;; `swiper--re-builder' read from `ivy-re-builders-alist'
+    ;; more flexible
+    (swiper keyword)))
 
-(eval-after-load 'cliphist
-  '(progn
-     (defadvice cliphist-routine-before-insert (before before-cliphist-paste activate)
-       (my-delete-selected-region))))
+(with-eval-after-load 'cliphist
+  (defun cliphist-routine-before-insert-hack (&optional arg)
+    (my-delete-selected-region))
+  (advice-add 'cliphist-routine-before-insert :before #'cliphist-routine-before-insert-hack))
+
+;; {{ Write backup files to its own directory
+;; @see https://www.gnu.org/software/emacs/manual/html_node/tramp/Auto_002dsave-and-Backup.html
+(defvar my-binary-file-name-regexp "\\.\\(avi\\|wav\\|pdf\\|mp[34g]\\|mkv\\|exe\\|3gp\\|rmvb\\|rm\\)$"
+  "Is binary file name?")
+
+(setq backup-enable-predicate
+      (lambda (name)
+        (and (normal-backup-enable-predicate name)
+             (not (string-match-p my-binary-file-name-regexp name)))))
+
+(if (not (file-exists-p (expand-file-name "~/.backups")))
+  (make-directory (expand-file-name "~/.backups")))
+(setq backup-by-copying t ; don't clobber symlinks
+      backup-directory-alist '(("." . "~/.backups"))
+      delete-old-versions t
+      version-control t  ;use versioned backups
+      kept-new-versions 6
+      kept-old-versions 2)
+
+;; Donot make backups of files, not safe
+;; @see https://github.com/joedicastro/dotfiles/tree/master/emacs
+(setq vc-make-backup-files nil)
+;; }}
+
+;; {{ tramp setup
+(add-to-list 'backup-directory-alist
+             (cons tramp-file-name-regexp nil))
+(setq tramp-chunksize 8192)
+
+;; @see https://github.com/syl20bnr/spacemacs/issues/1921
+;; If you tramp is hanging, you can uncomment below line.
+;; (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+;; }}
+
+;; {{ GUI frames
+;; Suppress GUI features
+(setq use-file-dialog nil)
+(setq use-dialog-box nil)
+(setq inhibit-startup-screen t)
+(setq inhibit-startup-echo-area-message t)
+
+;; Show a marker in the left fringe for lines not in the buffer
+(setq indicate-empty-lines t)
+
+;; NO tool bar, scroll-bar
+(when window-system
+  (and (fboundp 'scroll-bar-mode) (not (eq scroll-bar-mode -1))
+       (scroll-bar-mode -1))
+  (and (fboundp 'tool-bar-mode) (not (eq tool-bar-mode -1))
+       (tool-bar-mode -1))
+  (and (fboundp 'horizontal-scroll-bar-mode)
+       (horizontal-scroll-bar-mode -1)))
+;; no menu bar
+(and (fboundp 'menu-bar-mode) (not (eq menu-bar-mode -1))
+     (menu-bar-mode -1))
+;; }}
 
 (provide 'init-essential)
