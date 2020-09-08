@@ -1,25 +1,13 @@
 ;; 原来管理包的方式感觉过于复杂，如果那个包不做什么配置直接require得了，不新建对应的 init 文件了
 
-;; List of visible packages from melpa-unstable (http://melpa.org).
-;; Please add the package name into `melpa-include-packages'
-;; if it's not visible after  `list-packages'.
-(setq melpa-include-packages (append melpa-include-packages
-                                     '(
-	                                   flymd
-                                       lsp-haskell
-                                       outline-magic
-                                       quickrun
-                                       org-noter
-                                       faceup
-                                       racket-mode
-                                       org-rich-yank
-                                       ob-ipython
-                                       )))
-
-
+(defun require-local (pkg &optional maybe-disabled)
+  "Load PKG if MAYBE-DISABLED is nil or it's nil but start up in normal slowly."
+  (when (or (not maybe-disabled) (not (boundp 'startup-now)))
+    (load (file-truename (format "~/.emacs.d/lisp/local/others/%s" pkg)) t t)))
 
 ;; 包可以在 MELPA 或 ELPA 上找到的，但是自己下的，与之前 redguard 下的做区分
 
+(require-local 'init-elpa)
 (require 'init-org-download)
 (require 'init-flymd)
 (require 'init-auctex)
