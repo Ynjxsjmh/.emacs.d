@@ -29,6 +29,7 @@
 (require-package 'ahk-mode)
 (require-package 'racket-mode)
 (require-package 'ob-ipython)
+(require-package 'org-bullets)
 
 
 (provide 'init-elpa)
