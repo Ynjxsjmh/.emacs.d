@@ -12,6 +12,7 @@
                                        racket-mode
                                        org-rich-yank
                                        ob-ipython
+                                       pos-tip
                                        )))
 
 (require-package 'org-download)
