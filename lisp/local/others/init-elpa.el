@@ -13,6 +13,12 @@
                                        org-rich-yank
                                        ob-ipython
                                        pos-tip
+                                       ein
+                                       websocket
+                                       anaphora
+                                       request
+                                       polymode
+                                       with-editor
                                        )))
 
 (require-package 'org-download)
