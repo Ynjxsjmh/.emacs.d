@@ -19,7 +19,9 @@
 
 (setq delete-by-moving-to-trash t)
 
-(load-theme 'doom-solarized-light t)
+(if (display-graphic-p)
+    (load-theme 'doom-solarized-light t)
+  (load-theme 'sanityinc-tomorrow-eighties t))
 
 ;; maximize the window
 (setq initial-frame-alist (quote ((fullscreen . maximized))))
