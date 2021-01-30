@@ -1,4 +1,6 @@
 
+(require 'counsel)
+
 ;; https://emacs-china.org/t/emacs-rg-buffer/8347/4
 (let ((command
          (cond
