@@ -11,6 +11,7 @@
           (t counsel-grep-base-command))))
     (setq counsel-grep-base-command command))
 
+(setq-default header-line-format '(" %l %b " default-directory))
 
 ;;------------------------------------------------------------------------------
 ;; minor changes
