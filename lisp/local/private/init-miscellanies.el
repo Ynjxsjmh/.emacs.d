@@ -13,6 +13,22 @@
 
 (setq-default header-line-format '(" %l %b " default-directory))
 
+(require 'hideshow)
+
+(add-hook 'prog-mode-hook 'hs-minor-mode)
+
+;; https://github.com/condy0919/emacs-newbie/blob/master/introduction-to-builtin-modes.md#hideshow
+;; 额外启用了 :box t 属性使得提示更加明显
+(defconst hideshow-folded-face '((t (:inherit 'font-lock-comment-face :box t))))
+
+(defun hideshow-folded-overlay-fn (ov)
+    (when (eq 'code (overlay-get ov 'hs))
+      (let* ((nlines (count-lines (overlay-start ov) (overlay-end ov)))
+             (info (format " ... #%d " nlines)))
+        (overlay-put ov 'display (propertize info 'face hideshow-folded-face)))))
+
+(setq hs-set-up-overlay 'hideshow-folded-overlay-fn)
+
 ;;------------------------------------------------------------------------------
 ;; minor changes
 ;;------------------------------------------------------------------------------
