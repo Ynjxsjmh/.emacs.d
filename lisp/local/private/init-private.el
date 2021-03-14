@@ -18,7 +18,6 @@
 (require 'init-miscellanies)
 (require 'init-whitespace-killer)
 (require 'init-blog-post)
-(require 'init-company)
 (require-local 'init-lisp)
 (require 'init-epub)
 (require 'init-auto-insert)
