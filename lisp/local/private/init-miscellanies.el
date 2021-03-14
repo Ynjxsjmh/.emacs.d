@@ -38,9 +38,14 @@
 
 (setq delete-by-moving-to-trash t)
 
-(if (display-graphic-p)
-    (load-theme 'doom-solarized-light t)
-  (load-theme 'sanityinc-tomorrow-eighties t))
+(load-theme 'doom-solarized-light t)
+
+(if (not (display-graphic-p))
+    (custom-set-faces
+     '(line-number-current-line ((t (:inherit (hl-line default) :background "#e5e1d2" :foreground "#556b72" :strike-through nil :underline nil :slant normal :weight bold))))
+     '(magit-diff-added-highlight ((t (:extend t :background "#e5e3b5" :foreground "#859900" :weight bold))))
+     '(magit-diff-removed-highlight ((t (:extend t :background "#edc2ae" :foreground "#dc322f" :weight bold))))
+     '(widget-field ((t (:extend t :background "cyan" :foreground "#2d2d2d"))))))
 
 ;; maximize the window
 (setq initial-frame-alist (quote ((fullscreen . maximized))))
