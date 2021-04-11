@@ -146,5 +146,11 @@
 
 ;; (add-hook 'org-export-before-processing-hook 'my-org-inline-css-hook)
 
+(require 'org-appear)
+(add-hook 'org-mode-hook 'org-appear-mode)
+
+(require 'org-fragtog)
+(add-hook 'org-mode-hook 'org-fragtog-mode)
+
 (provide 'init-org)
 ;;; init-org.el ends here

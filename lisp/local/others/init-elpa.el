@@ -19,6 +19,7 @@
                                        request
                                        polymode
                                        with-editor
+                                       org-appear
                                        )))
 
 (require-package 'org-download)
@@ -37,7 +38,8 @@
 (require-package 'racket-mode)
 (require-package 'ob-ipython)
 (require-package 'org-bullets)
-
+(require-package 'org-fragtog)
+(require-package 'org-appear)
 
 (provide 'init-elpa)
 ;;; init-elpa.el ends here
