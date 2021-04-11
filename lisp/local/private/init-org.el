@@ -148,6 +148,7 @@
 
 (require 'org-appear)
 (add-hook 'org-mode-hook 'org-appear-mode)
+(setq org-appear-autosubmarkers t)
 
 (require 'org-fragtog)
 (add-hook 'org-mode-hook 'org-fragtog-mode)
