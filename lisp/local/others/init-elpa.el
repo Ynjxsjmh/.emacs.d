@@ -40,6 +40,7 @@
 (require-package 'org-bullets)
 (require-package 'org-fragtog)
 (require-package 'org-appear)
+(require-package 'clipetty)
 
 (provide 'init-elpa)
 ;;; init-elpa.el ends here
