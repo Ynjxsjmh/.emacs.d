@@ -58,10 +58,10 @@
                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "◦"))))))
 
 
-(setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "💻")
-                                       ("#+END_SRC" . "💻")
-                                       ("#+begin_src" . "💻")
-                                       ("#+end_src" . "💻")
+(setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "✎")
+                                       ("#+END_SRC" . "□")
+                                       ("#+begin_src" . "✎")
+                                       ("#+end_src" . "□")
                                        ("#+BEGIN_QUOTE" . "🕮")
                                        ("#+END_QUOTE" . "🕮")
                                        ("#+begin_quote" . "🕮")
