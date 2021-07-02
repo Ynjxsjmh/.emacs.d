@@ -54,9 +54,9 @@
 			    '(#x1F600 . #x1F64F) "Segoe UI Symbol") ; Emoji
 	  (set-fontset-font "fontset-default"
 	  		    '(#xE000 . #xF8FF) "STIX")) ; Private Use Areas
+
       ;; 下面是Linux的配置，道理类似。
-      (set-face-attribute
-       'default nil :font "Inconsolata 14")
+      (set-face-attribute 'default nil :font "Inconsolata 16")
       (dolist (charset '(kana han cjk-misc bopomofo))
 	(set-fontset-font "fontset-default"
 			  charset (font-spec :name "Hiragino Sans GB")))))
