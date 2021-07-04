@@ -13,6 +13,13 @@
 
 (setq-default header-line-format '("   " default-directory))
 
+;; | 功能             | 原生        | evil-mode |
+;; | hs-hide-block    | C-c @ C-h   | zc        |
+;; | hs-show-block    | C-c @ C-s   | zo        |
+;; | hs-hide-all      | C-c @ C-M-h | zm        |
+;; | hs-show-all      | C-c @ C-M-s | zr        |
+;; | hs-hide-level    | C-c @ C-l   | 无        |
+;; | hs-toggle-hiding | C-c @ C-c   | za        |
 (require 'hideshow)
 
 (add-hook 'prog-mode-hook 'hs-minor-mode)
