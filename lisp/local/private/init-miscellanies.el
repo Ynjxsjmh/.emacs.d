@@ -36,6 +36,14 @@
 
 (setq hs-set-up-overlay 'hideshow-folded-overlay-fn)
 
+;; Syntax highlighting for systemd files
+(require 'conf-mode)
+(let ((system-file (rx "."
+                       (or "automount" "busname" "link" "mount" "netdev" "network"
+                           "path" "service" "slice" "socket" "swap" "target" "timer")
+                       string-end)))
+  (add-to-list 'auto-mode-alist `(,system-file . conf-toml-mode)))
+
 ;;------------------------------------------------------------------------------
 ;; minor changes
 ;;------------------------------------------------------------------------------
