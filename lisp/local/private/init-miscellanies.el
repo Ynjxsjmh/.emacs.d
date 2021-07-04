@@ -36,6 +36,26 @@
 
 (setq hs-set-up-overlay 'hideshow-folded-overlay-fn)
 
+(defvar my/py-hide-show-keywords '("class" "def" "elif" "else" "except"
+                                   "for" "if" "while" "finally" "try" "with"))
+
+(defun my/replace-hs-special ()
+  (setq hs-special-modes-alist
+        (remove-if #'(lambda (x) (equal 'python-mode (car x)))
+                   hs-special-modes-alist))
+  (push (list
+         'python-mode
+         (mapconcat #'(lambda (x) (concat "^\\s-*" x "\\>"))
+                    my/py-hide-show-keywords "\\|")
+         "^\\s-*"
+         "#"
+         #'(lambda (x) (python-nav-end-of-block))
+         nil)
+        hs-special-modes-alist)
+  (hs-grok-mode-type))
+
+(add-hook 'python-mode-hook 'my/replace-hs-special)
+
 ;; Syntax highlighting for systemd files
 (require 'conf-mode)
 (let ((system-file (rx "."
