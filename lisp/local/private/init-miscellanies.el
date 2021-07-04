@@ -93,6 +93,21 @@
   (browse-url (format "http://localhost:5000/%s.%s" (file-name-base) (file-name-extension (buffer-file-name)))))
 (global-set-key (kbd "C-c m")   'markdown-to-html)  ;给函数绑定一个快捷键
 
+(defun douban-org-toc ()
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (not (eobp))
+      (let* ((lb (line-beginning-position))
+             (le (line-end-position))
+             (ln (buffer-substring-no-properties lb le))
+             (heading (car (split-string ln " ")))
+             (count (length (split-string heading "\\."))))
+        (beginning-of-line)
+        (insert (make-string count ?*))
+        (insert " ")
+        (forward-line 1)))))
+
 ;;------------------------------------------------------------------------------
 
 ;; https://wikemacs.org/wiki/Emacs_Lisp_Cookbook
