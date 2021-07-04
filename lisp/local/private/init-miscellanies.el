@@ -11,7 +11,7 @@
           (t counsel-grep-base-command))))
     (setq counsel-grep-base-command command))
 
-(setq-default header-line-format '(" %l %b " default-directory))
+(setq-default header-line-format '("   " default-directory))
 
 (require 'hideshow)
 
