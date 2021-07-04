@@ -66,8 +66,6 @@
 (define-key evil-insert-state-map (kbd "C-p") 'previous-line)
 (define-key evil-insert-state-map (kbd "C-n") 'next-line)
 
-(setq org-latex-toc-command "\\tableofcontents \\clearpage")
-
 (add-to-list 'auto-mode-alist '("/\\.gitclone\\'" . gitconfig-mode))
 
 ;;------------------------------------------------------------------------------

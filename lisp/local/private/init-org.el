@@ -126,6 +126,7 @@
 (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
 (org-element-update-syntax)
 
+(setq org-latex-toc-command "\\tableofcontents \\clearpage")
 
 (defun my-org-inline-css-hook (exporter)
   "Insert custom inline css"
