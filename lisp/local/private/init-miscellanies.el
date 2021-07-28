@@ -161,8 +161,19 @@
                (setq converted-str (concat converted-str (nth 1 (cdr (assoc c superscript-subscript-map))))))
               (t "default")))
       (if (eq (length str) (length converted-str))
-          converted-str
-        str))))
+          converted-str))))
+
+(defun latex-to-unicode ()
+  (interactive)
+  (goto-char (point-min))
+  (while (re-search-forward "\\([_^]\\){\\([[:word:]ɑβθ+-=()]+\\)}" nil t)
+    (let ((data (match-data)))
+      (unwind-protect
+          (setq converted-str (convert-to-unicode (match-string 2) (match-string 1)))
+        (set-match-data data)))
+    (if converted-str
+        (replace-match converted-str))))
+
 ;;------------------------------------------------------------------------------
 
 ;; https://wikemacs.org/wiki/Emacs_Lisp_Cookbook
