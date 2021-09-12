@@ -36,7 +36,7 @@
 
 (setq hs-set-up-overlay 'hideshow-folded-overlay-fn)
 
-(defvar my/py-hide-show-keywords '("class" "def" "elif" "else" "except"
+(defvar my/py-hide-show-keywords '("class" "def" "elif" "else" "except" "async def"
                                    "for" "if" "while" "finally" "try" "with"))
 
 (defun my/replace-hs-special ()
@@ -127,6 +127,25 @@
         (insert (make-string count ?*))
         (insert " ")
         (forward-line 1)))))
+
+(require 'elec-pair)
+
+;; 把弯引号左右对调重新添加到补全列表
+(setq electric-pair-pairs
+      `(,@electric-pair-pairs
+        (?’ . ?‘)
+        (?” . ?“)))
+
+;; 修正左右对调的补全
+(define-advice electric-pair--insert (:around (orig-fn c) fix-curved-quotes)
+  (let* ((qpair (rassoc c electric-pair-pairs))
+         (reverse-p (and qpair (> (car qpair) (cdr qpair)))))
+    (if reverse-p
+        (run-with-timer 0 nil
+                        `(lambda ()
+                           (backward-char 1)
+                           (insert (char-to-string ,c))))
+      (funcall orig-fn c))))
 
 ;;------------------------------------------------------------------------------
 
