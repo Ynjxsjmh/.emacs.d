@@ -21,5 +21,6 @@
 (require-local 'init-lisp)
 (require 'init-epub)
 (require 'init-auto-insert)
+(require 'init-hideshow)
 
 (provide 'init-private)

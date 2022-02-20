@@ -13,47 +13,6 @@
 
 (setq-default header-line-format '("   " default-directory))
 
-;; | 功能             | 原生        | evil-mode |
-;; | hs-hide-block    | C-c @ C-h   | zc        |
-;; | hs-show-block    | C-c @ C-s   | zo        |
-;; | hs-hide-all      | C-c @ C-M-h | zm        |
-;; | hs-show-all      | C-c @ C-M-s | zr        |
-;; | hs-hide-level    | C-c @ C-l   | 无        |
-;; | hs-toggle-hiding | C-c @ C-c   | za        |
-(require 'hideshow)
-
-(add-hook 'prog-mode-hook 'hs-minor-mode)
-
-;; https://github.com/condy0919/emacs-newbie/blob/master/introduction-to-builtin-modes.md#hideshow
-;; 额外启用了 :box t 属性使得提示更加明显
-(defconst hideshow-folded-face '((t (:inherit 'font-lock-comment-face :box t))))
-
-(defun hideshow-folded-overlay-fn (ov)
-    (when (eq 'code (overlay-get ov 'hs))
-      (let* ((nlines (count-lines (overlay-start ov) (overlay-end ov)))
-             (info (format " ... #%d " nlines)))
-        (overlay-put ov 'display (propertize info 'face hideshow-folded-face)))))
-
-(setq hs-set-up-overlay 'hideshow-folded-overlay-fn)
-
-(defvar my/py-hide-show-keywords '("class" "def" "elif" "else" "except" "async def"
-                                   "for" "if" "while" "finally" "try" "with"))
-
-(defun my/replace-hs-special ()
-  (setq hs-special-modes-alist
-        (remove-if #'(lambda (x) (equal 'python-mode (car x)))
-                   hs-special-modes-alist))
-  (push (list
-         'python-mode
-         (mapconcat #'(lambda (x) (concat "^\\s-*" x "\\>"))
-                    my/py-hide-show-keywords "\\|")
-         "^\\s-*"
-         "#"
-         #'(lambda (x) (python-nav-end-of-block))
-         nil)
-        hs-special-modes-alist)
-  (hs-grok-mode-type))
-
 (add-hook 'python-mode-hook 'my/replace-hs-special)
 
 ;; Syntax highlighting for systemd files
