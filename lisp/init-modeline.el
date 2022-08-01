@@ -14,6 +14,9 @@
     "%02l" "," "%01c"
     ") "
 
+    ;; File Size
+    "%I "
+
     ;; @see https://www.gnu.org/software/emacs/manual/html_node/emacs/Help-Echo.html
     "["
     ;; the current major mode for the buffer.
