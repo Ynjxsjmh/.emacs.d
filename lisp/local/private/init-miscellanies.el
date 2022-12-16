@@ -5,9 +5,11 @@
 (let ((command
          (cond
           ((executable-find "rg")
-           "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
+           "rg -i -M 120 --no-heading --line-number --color never %s %s")
           ((executable-find "pt")
            "pt -zS --nocolor --nogroup -e %s")
+          ((executable-find "ag")
+           "ag -S --noheading --nocolor --nofilename --numbers '%s' %s")
           (t counsel-grep-base-command))))
     (setq counsel-grep-base-command command))
 
