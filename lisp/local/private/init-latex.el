@@ -15,6 +15,134 @@
 
 (add-hook 'LaTeX-mode-hook #'latex-extra-mode)
 
+(setq katex-map
+      '(;; Delimiters
+        ("\\lparen" "(") ("\\rparen" ")") ("\\lceil"  "⌈") ("\\rceil"  "⌉") ("\\uparrow" "↑")
+        ("\\lbrack" "[") ("\\rbrack" "]") ("\\lfloor" "⌊") ("\\rfloor" "⌋") ("\\downarrow" "↓")
+        ("\\lbrace" "{") ("\\rbrace" "}") ("\\lmoustache" "⎰") ("\\rmoustache" "⎱") ("\\updownarrow" "↕")
+        ("\\langle" "⟨") ("\\rangle" "⟩") ("\\lgroup" "⟮") ("\\rgroup" "⟯") ("\\Uparrow" "⇑")
+        ("\\vert" "∣") ("\\ulcorner" "⌜") ("\\urcorner" "⌝") ("\\Downarrow" "⇓")
+        ("\\|" "∥") ("\\Vert" "∥") ("\\llcorner" "⌞") ("\\lrcorner" "⌟") ("\\Updownarrow" "⇕")
+        ("\\lvert" "∣") ("\\rvert" "∣") ("\\lVert" "∥") ("\\rVert" "∥") ("\\backslash" "\\")
+        ("\\lang" "⟨") ("\\rang" "⟩") ("\\lt" "<") ("\\gt" ">") ("\\llbracket" "⟦") ("\\rrbracket" "⟧")
+
+        ;; Letters and Unicode
+        ;;; Greek Letters
+        ("\\Alpha"   "A") ("\\Beta"  "B") ("\\Gamma"   "Γ") ("\\Delta"   "Δ")
+        ("\\Epsilon" "E") ("\\Zeta"  "Z") ("\\Eta"     "H") ("\\Theta"   "Θ")
+        ("\\Iota"    "I") ("\\Kappa" "K") ("\\Lambda"  "Λ") ("\\Mu"      "M")
+        ("\\Nu"      "N") ("\\Xi"    "Ξ") ("\\Omicron" "O") ("\\Pi"      "Π")
+        ("\\Rho"     "P") ("\\Sigma" "Σ") ("\\Tau"     "T") ("\\Upsilon" "Υ")
+        ("\\Phi"     "Φ") ("\\Chi"   "X") ("\\Psi"     "Ψ") ("\\Omega"   "Ω")
+        ("\\varGamma" "Γ") ("\\varDelta" "Δ") ("\\varTheta" "Θ") ("\\varLambda"  "Λ")
+        ("\\varXi"    "Ξ") ("\\varPi"    "Π") ("\\varSigma" "Σ") ("\\varUpsilon" "Υ")
+        ("\\varPhi"   "Φ") ("\\varPsi"   "Ψ") ("\\varOmega" "Ω")
+        ("\\alpha"   "α") ("\\beta"  "β") ("\\gamma"   "γ") ("\\delta"   "δ")
+        ("\\epsilon" "ϵ") ("\\zeta"  "ζ") ("\\eta"     "η") ("\\theta"   "θ")
+        ("\\iota"    "ι") ("\\kappa" "κ") ("\\lambda"  "λ") ("\\mu"      "μ")
+        ("\\nu"      "ν") ("\\xi"    "ξ") ("\\omicron" "ο") ("\\pi"      "π")
+        ("\\rho"     "ρ") ("\\sigma" "σ") ("\\tau"     "τ") ("\\upsilon" "υ")
+        ("\\phi"     "ϕ") ("\\chi"   "χ") ("\\psi"     "ψ") ("\\omega"   "ω")
+        ("\\varepsilon" "ε") ("\\varkappa" "ϰ") ("\\vartheta" "ϑ") ("\\thetasym" "ϑ")
+        ("\\varpi"      "ϖ") ("\\varrho"   "ϱ") ("\\varsigma" "ς") ("\\varphi"   "φ")
+        ("\\digamma" "ϝ")
+
+        ;; Logic and Set Theory
+        ("\\forall"  "∀") ("\\therefore" "∴") ("\\emptyset" "∅")
+        ("\\exists"  "∃") ("\\subset"    "⊂") ("\\because"  "∵")  ("\\empty"      "∅")
+        ("\\exist"   "∃") ("\\supset"    "⊃") ("\\mapsto"   "↦") ("\\varnothing" "∅")
+        ("\\nexists" "∄") ("\\mid"       "|") ("\\to"       "→") ("\\implies"    "⟹")
+        ("\\in"      "∈") ("\\land"      "∧") ("\\gets"     "←") ("\\impliedby"  "⟸")
+        ("\\isin"    "∈") ("\\lor"       "∨") ("\\leftrightarrow" "↔") ("\\iff"  "⟺")
+        ("\\ni"      "∋") ("\\neg"       "¬") ("\\lnot" "¬")
+
+        ;; Relations
+        ("\\doteqdot" "≑") ("\\lessapprox" "⪅") ("\\smile" "⌣")
+        ("\\eqcirc" "≖") ("\\lesseqgtr" "⋚") ("\\sqsubset" "⊏")
+        ("\\eqcolon" "−:") ("\\lesseqqgtr" "⪋") ("\\sqsubseteq" "⊑")
+        ("\\Eqcolon" "−::") ("\\lessgtr" "≶") ("\\sqsupset" "⊐")
+        ("\\approx" "≈") ("\eqqcolon" "=:") ("\\lesssim" "≲") ("\\sqsupseteq" "⊒")
+        ("\\approxcolon" "≈:") ("\\Eqqcolon" "=::") ("\\ll" "≪") ("\\Subset" "⋐")
+        ("\\approxcoloncolon" "≈::") ("\\eqsim" "≂") ("\\lll" "⋘") ("\\subset" "⊂")
+        ("\\approxeq" "≊") ("\\eqslantgtr" "⪖") ("\\llless" "⋘") ("\\subseteq" "⊆")
+        ("\\asymp" "≍") ("\\eqslantless" "⪕") ("\\lt" "<") ("\\subseteqq" "⫅")
+        ("\\backepsilon" "∍") ("\\equiv" "≡") ("\\mid" "∣") ("\\succ" "≻")
+        ("\\backsim" "∽") ("\\fallingdotseq" "≒") ("\\models" "⊨") ("\\succapprox" "⪸")
+        ("\\backsimeq" "⋍") ("\\frown" "⌢") ("\\multimap" "⊸") ("\\succcurlyeq" "≽")
+        ("\\between" "≬") ("\\ge" "≥") ("\\origof" "⊶") ("\\succeq" "⪰")
+        ("\\bowtie" "⋈") ("\\geq" "≥") ("\\owns" "∋") ("\\succsim" "≿")
+        ("\\bumpeq" "≏") ("\\geqq" "≧") ("\\parallel" "∥") ("\\Supset" "⋑")
+        ("\\Bumpeq" "≎") ("\\geqslant" "⩾") ("\\perp" "⊥") ("\\supset" "⊃")
+        ("\\circeq" "≗") ("\\gg" "≫") ("\\pitchfork" "⋔") ("\\supseteq" "⊇")
+        ("\\colonapprox" ":≈") ("\\ggg" "⋙") ("\\prec" "≺") ("\\supseteqq" "⫆")
+        ("\\Colonapprox" "::≈") ("\\gggtr" "⋙") ("\\precapprox" "⪷") ("\\thickapprox" "≈")
+        ("\\coloneq" ":−") ("\\gt" ">") ("\\preccurlyeq" "≼") ("\\thicksim" "∼")
+        ("\\Coloneq" "::−") ("\\gtrapprox" "⪆") ("\\preceq" "⪯") ("\\trianglelefteq" "⊴")
+        ("\\coloneqq" ":=") ("\\gtreqless" "⋛") ("\\precsim" "≾") ("\\triangleq" "≜")
+        ("\\Coloneqq" "::=") ("\\gtreqqless" "⪌") ("\\propto" "∝") ("\\trianglerighteq" "⊵")
+        ("\\colonsim" ":∼") ("\\gtrless" "≷") ("\\risingdotseq" "≓") ("\\varpropto" "∝")
+        ("\\Colonsim" "::∼") ("\\gtrsim" "≳") ("\\shortmid" "∣") ("\\vartriangle" "△")
+        ("\\cong" "≅") ("\\imageof" "⊷") ("\\shortparallel" "∥") ("\\vartriangleleft" "⊲")
+        ("\\curlyeqprec" "⋞") ("\\in" "∈") ("\\sim" "∼") ("\\vartriangleright" "⊳")
+        ("\\curlyeqsucc" "⋟") ("\\Join" "⋈") ("\\simcolon" "∼:") ("\\vcentcolon" ":")
+        ("\\dashv" "⊣") ("\\le" "≤") ("\\simcoloncolon" "∼::") ("\\vdash" "⊢")
+        ("\\dblcolon" "::") ("\\leq" "≤") ("\\simeq" "≃") ("\\vDash" "⊨")
+        ("\\doteq" "≐") ("\\leqq" "≦") ("\\smallfrown" "⌢") ("\\Vdash" "⊩")
+        ("\\Doteq" "≑") ("\\leqslant" "⩽") ("\\smallsmile" "⌣") ("\\Vvdash" "⊪")
+
+        ;;; Negated Relations
+        ("\\gnapprox" "⪊") ("\\ngeqslant" "") ("\\nsubseteq" "⊈") ("\\precneqq" "⪵")
+        ("\\gneq" "⪈") ("\\ngtr" "≯") ("\\nsubseteqq" "") ("\\precnsim" "⋨") ("\\gneqq" "≩")
+        ("\\nleq" "≰") ("\\nsucc" "⊁") ("\\subsetneq" "⊊") ("\\gnsim" "⋧") ("\\nleqq" "")
+        ("\\nsucceq" "⋡") ("\\subsetneqq" "⫋") ("\\gvertneqq" "") ("\\nleqslant" "")
+        ("\\nsupseteq" "⊉") ("\\succnapprox" "⪺") ("\\lnapprox" "⪉") ("\\nless" "≮")
+        ("\\nsupseteqq" "") ("\\succneqq" "⪶") ("\\lneq" "⪇") ("\\nmid" "∤")
+        ("\\ntriangleleft" "⋪") ("\\succnsim" "⋩") ("\\lneqq" "≨") ("\\notin" "∈/")
+        ("\\ntrianglelefteq" "⋬") ("\\supsetneq" "⊋") ("\\lnsim" "⋦") ("\\notni" "")
+        ("\\ntriangleright" "⋫") ("\\supsetneqq" "⫌") ("\\lvertneqq" "") ("\\nparallel" "∦")
+        ("\\ntrianglerighteq" "⋭") ("\\varsubsetneq" "") ("\\ncong" "≆") ("\\nprec" "⊀")
+        ("\\nvdash" "⊬") ("\\varsubsetneqq" "") ("\\ne" "=") ("\\npreceq" "⋠")
+        ("\\nvDash" "⊭") ("\\varsupsetneq" "") ("\\neq" "=") ("\\nshortmid" "")
+        ("\\nVDash" "⊯") ("\\varsupsetneqq" "") ("\\ngeq" "≱") ("\\nshortparallel" "")
+        ("\\nVdash" "⊮") ("\\ngeqq" "") ("\\nsim" "≁") ("\\precnapprox" "⪹")
+
+        ;;; Arrows
+        ("\\circlearrowleft" "↺") ("\\leftharpoonup" "↼") ("\\rArr" "⇒")
+        ("\\circlearrowright" "↻") ("\\leftleftarrows" "⇇") ("\\rarr" "→")
+        ("\\curvearrowleft" "↶") ("\\leftrightarrow" "↔") ("\\restriction" "↾")
+        ("\\curvearrowright" "↷") ("\\Leftrightarrow" "⇔") ("\\rightarrow" "→")
+        ("\\Darr" "⇓") ("\\leftrightarrows" "⇆") ("\\Rightarrow" "⇒") ("\\dArr" "⇓")
+        ("\\leftrightharpoons" "⇋") ("\\rightarrowtail" "↣") ("\\darr" "↓")
+        ("\\leftrightsquigarrow" "↭") ("\\rightharpoondown" "⇁") ("\\dashleftarrow" "⇠")
+        ("\\Lleftarrow" "⇚") ("\\rightharpoonup" "⇀") ("\\dashrightarrow" "⇢")
+        ("\\longleftarrow" "⟵") ("\\rightleftarrows" "⇄") ("\\downarrow" "↓")
+        ("\\Longleftarrow" "⟸") ("\\rightleftharpoons" "⇌") ("\\Downarrow" "⇓")
+        ("\\longleftrightarrow" "⟷") ("\\rightrightarrows" "⇉") ("\\downdownarrows" "⇊")
+        ("\\Longleftrightarrow" "⟺") ("\\rightsquigarrow" "⇝") ("\\downharpoonleft" "⇃")
+        ("\\longmapsto" "⟼") ("\\Rrightarrow" "⇛") ("\\downharpoonright" "⇂")
+        ("\\longrightarrow" "⟶") ("\\Rsh" "↱") ("\\gets" "←") ("\\Longrightarrow" "⟹")
+        ("\\searrow" "↘") ("\\Harr" "⇔") ("\\looparrowleft" "↫") ("\\swarrow" "↙")
+        ("\\hArr" "⇔") ("\\looparrowright" "↬") ("\\to" "→") ("\\harr" "↔")
+        ("\\Lrarr" "⇔") ("\\twoheadleftarrow" "↞") ("\\hookleftarrow" "↩") ("\\lrArr" "⇔")
+        ("\\twoheadrightarrow" "↠") ("\\hookrightarrow" "↪") ("\\lrarr" "↔") ("\\Uarr" "⇑")
+        ("\\iff" "⟺") ("\\Lsh" "↰") ("\\uArr" "⇑") ("\\impliedby" "⟸") ("\\mapsto" "↦")
+        ("\\uarr" "↑") ("\\implies" "⟹") ("\\nearrow" "↗") ("\\uparrow" "↑") ("\\Larr" "⇐")
+        ("\\nleftarrow" "↚") ("\\Uparrow" "⇑") ("\\lArr" "⇐") ("\\nLeftarrow" "⇍")
+        ("\\updownarrow" "↕") ("\\larr" "←") ("\\nleftrightarrow" "↮") ("\\Updownarrow" "⇕")
+        ("\\leadsto" "⇝") ("\\nLeftrightarrow" "⇎") ("\\upharpoonleft" "↿") ("\\leftarrow" "←")
+        ("\\nrightarrow" "↛") ("\\upharpoonright" "↾") ("\\Leftarrow" "⇐") ("\\nRightarrow" "⇏")
+        ("\\upuparrows" "⇈") ("\\leftarrowtail" "↢") ("\\nwarrow" "↖") ("\\leftharpoondown" "↽")
+        ("\\Rarr" "⇒")))
+
+;; var cells = document.getElementsByTagName('table')[8].getElementsByTagName('td');
+;; for (var cell of cells) {
+;;   var latex = cell.getElementsByTagName('code')[0];
+;;   var text = cell.querySelectorAll('.mord,.mrel')[0];
+;;   if (latex === undefined || text === undefined) {
+;;     continue;
+;;   }
+;;   console.log(`("\\${latex.textContent}" "${text.textContent}")`);
+;; }
 
 (setq superscript-subscript-map
       ;;     sup sub
