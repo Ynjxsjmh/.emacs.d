@@ -17,7 +17,7 @@
 ;; copy from <https://www.emacswiki.org/emacs/AUCTeX#toc5>
 (setq TeX-PDF-mode t)
 (require 'tex)
-    (TeX-global-PDF-mode t)
+(TeX-global-PDF-mode t)
 
 ;; 将cdlatex设置为AUCtex的辅模式
 (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
