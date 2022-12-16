@@ -1,8 +1,5 @@
 (require 'cdlatex)
 
-(load "auctex.el" nil t t)
-(load "preview.el" nil t t)
-
 ;; copy from <https://www.emacswiki.org/emacs/AUCTeX#toc2>
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
