@@ -10,7 +10,6 @@
 (require-local 'init-elpa)
 (require 'init-org-download)
 (require 'init-flymd)
-(require 'init-auctex)
 (require 'init-ox-gfm)
 (require 'init-ghc)
 ;; (void-variable default-tab-width) problem, check https://github.com/ppareit/graphviz-dot-mode/pull/24

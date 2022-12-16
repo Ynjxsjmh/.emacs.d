@@ -1,16 +1,41 @@
+(require 'cdlatex)
+
+;; copy from <https://www.emacswiki.org/emacs/AUCTeX#toc2>
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
+
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'auto-fill-mode)
+
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex) ; with AUCTeX LaTeX mode
+(add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
+(setq reftex-plug-into-AUCTeX t)
+
+;; copy from <https://www.emacswiki.org/emacs/AUCTeX#toc5>
+(setq TeX-PDF-mode t)
+(require 'tex)
+(TeX-global-PDF-mode t)
+
+;; 将cdlatex设置为AUCtex的辅模式
+(add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
+(add-hook 'latex-mode-hook 'turn-on-cdlatex)
+
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+
 ;;LaTeX config
 (add-hook 'LaTeX-mode-hook
-        (lambda ()
-          (add-to-list 'tex-compile-commands '("xelatex --shell-escape -interaction nonstopmode -output-directory %o %f" t "%r.pdf"))
-          (setq TeX-auto-untabify t     ; remove all tabs before saving
-                TeX-show-compilation t  ; display compilation windows
-                TeX-save-query nil
-                TeX-engine 'xetex       ; use xelatex default
-                ;; TeX-command-default "XeLaTeX"
-                )
-          (TeX-global-PDF-mode t)       ; PDF mode enable, not plain
-          (imenu-add-menubar-index)
-          (define-key LaTeX-mode-map (kbd "TAB") 'TeX-complete-symbol)))
+          (lambda ()
+            (add-to-list 'tex-compile-commands '("xelatex --shell-escape -interaction nonstopmode -output-directory %o %f" t "%r.pdf"))
+            (setq TeX-auto-untabify t  ; remove all tabs before saving
+                  TeX-show-compilation t ; display compilation windows
+                  TeX-save-query nil
+                  TeX-engine 'xetex   ; use xelatex default
+                  ;; TeX-command-default "XeLaTeX"
+                  )
+            (TeX-global-PDF-mode t)     ; PDF mode enable, not plain
+            (imenu-add-menubar-index)
+            (define-key LaTeX-mode-map (kbd "TAB") 'TeX-complete-symbol)))
 
 
 (add-hook 'LaTeX-mode-hook #'latex-extra-mode)
