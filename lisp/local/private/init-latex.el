@@ -38,8 +38,6 @@
             (define-key LaTeX-mode-map (kbd "TAB") 'TeX-complete-symbol)))
 
 
-(add-hook 'LaTeX-mode-hook #'latex-extra-mode)
-
 (setq katex-map
       '(;; Delimiters
         ("\\lparen" "(") ("\\rparen" ")") ("\\lceil"  "⌈") ("\\rceil"  "⌉") ("\\uparrow" "↑")
