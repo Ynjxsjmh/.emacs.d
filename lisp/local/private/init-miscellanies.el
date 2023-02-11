@@ -64,6 +64,16 @@
 
 (add-to-list 'auto-mode-alist '("/\\.gitclone\\'" . gitconfig-mode))
 
+; M-w 有选中内容时复制选中内容，没有选中内容时复制当前行
+(defun kill-ring-save-line-or-region (beg end &optional region)
+  (interactive (list (mark) (point)
+                     (prefix-numeric-value current-prefix-arg)))
+  (if (region-active-p)
+      (kill-ring-save beg end region)
+    (kill-ring-save (line-beginning-position) (line-end-position))))
+
+(global-set-key [remap kill-ring-save] 'kill-ring-save-line-or-region)
+
 ;;------------------------------------------------------------------------------
 ;; my function
 ;;------------------------------------------------------------------------------
