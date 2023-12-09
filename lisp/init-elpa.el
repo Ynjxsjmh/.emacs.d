@@ -101,13 +101,13 @@
     pomodoro
     packed
     keyfreq
-    gitconfig-mode
     textile-mode
     w3m
     workgroups2
     zoutline
     company-c-headers
-    company-statistics)
+    company-statistics
+    kv)
   "Packages to install from melpa-unstable.")
 
 (defvar melpa-stable-banned-packages nil
@@ -219,8 +219,7 @@ You still need modify `package-archives' in \"init-elpa.el\" to PERMANENTLY use 
 (require-package 'csv-mode)
 (require-package 'expand-region) ; I prefer stable version
 (require-package 'fringe-helper)
-(require-package 'gitignore-mode)
-(require-package 'gitconfig-mode)
+(require-package 'git-modes)
 (require-package 'wgrep)
 (require-package 'request)
 (require-package 'lua-mode)
