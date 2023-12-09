@@ -373,7 +373,6 @@ You still need modify `package-archives' in \"init-elpa.el\" to PERMANENTLY use 
      color-theme-sanityinc-tomorrow
      cyberpunk-theme
      dakrone-theme
-     darkburn-theme
      darkmine-theme
      darkokai-theme
      darktooth-theme
@@ -382,9 +381,7 @@ You still need modify `package-archives' in \"init-elpa.el\" to PERMANENTLY use 
      dracula-theme
      espresso-theme
      exotica-theme
-     eziam-theme
      fantom-theme
-     farmhouse-theme
      flatland-theme
      flatui-theme
      gandalf-theme
@@ -404,7 +401,6 @@ You still need modify `package-archives' in \"init-elpa.el\" to PERMANENTLY use 
      light-soap-theme
      lush-theme
      madhat2r-theme
-     majapahit-theme
      material-theme
      minimal-theme
      moe-theme
